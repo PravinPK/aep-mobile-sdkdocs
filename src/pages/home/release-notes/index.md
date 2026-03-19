@@ -7,6 +7,13 @@ Keywords:
 
 # Release notes
 
+## March 18, 2026
+
+### iOS Brand Concierge 5.2.0
+
+* Added an optional `handleLink` callback to `Concierge.show()`, `Concierge.wrap()`, and `Concierge.present(on:)` giving host apps control over link resolution, with automatic fallback to universal link verification and in-app WebView.
+* Fixed an issue where in-app WebView page navigation could reload the original URL instead of allowing normal page transitions.
+
 ## March 12, 2026
 
 ### Android Brand Concierge 3.1.0
