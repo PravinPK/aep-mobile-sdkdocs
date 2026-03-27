@@ -39,4 +39,3 @@ val unreadBgColor = AepColor(
     dark = Color(0xFF1E3A5F)   // Dark blue for dark theme
 )
 ```
-

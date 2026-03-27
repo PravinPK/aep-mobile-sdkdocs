@@ -50,7 +50,7 @@ data class Success(
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | template | [InboxTemplate](./inboxtemplate.md) | The properties to be used for rendering the inbox (heading, layout, capacity, etc.). |
-| items | List<[AepUI](../../../content-card-ui/Android/public-classes/aepui.md)<*, *>> | List of AEP UI elements representing content cards to display in the inbox. |
+| items | `List<AepUI<*, *>>` | List of [AepUI](../../../content-card-ui/Android/public-classes/aepui.md) elements representing content cards to display in the inbox. |
 
 ### Error
 
@@ -97,4 +97,3 @@ when (inboxUIState) {
     }
 }
 ```
-

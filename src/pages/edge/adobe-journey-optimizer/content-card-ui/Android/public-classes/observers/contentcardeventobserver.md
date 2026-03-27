@@ -17,7 +17,6 @@ keywords:
 
 Messaging implementation of [AepUIEventObserver](./aepuieventobserver.md) for handling content card events.
 
-
 ### Parameters
 
 The primary constructor takes two optional parameters.

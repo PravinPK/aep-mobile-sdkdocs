@@ -54,4 +54,3 @@ keywords:
 * [Fetch and Display Inbox](./tutorial/displaying-inbox.md)
 * [Customizing Inbox](./tutorial/customizing-inbox.md)
 * [Listening to Inbox Events](./tutorial/listening-inbox-events.md)
-
