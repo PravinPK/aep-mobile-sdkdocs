@@ -305,13 +305,11 @@ Individual content cards within the Inbox can be customized using `AepUIStyle`. 
 #### Kotlin
 
 ```kotlin
-import androidx.compose.runtime.remember
 import com.adobe.marketing.mobile.aepcomposeui.style.AepCardStyle
 import com.adobe.marketing.mobile.aepcomposeui.style.AepUIStyle
 import com.adobe.marketing.mobile.aepcomposeui.style.SmallImageUIStyle
 import com.adobe.marketing.mobile.aepcomposeui.style.LargeImageUIStyle
 import com.adobe.marketing.mobile.aepcomposeui.style.ImageOnlyUIStyle
-import com.adobe.marketing.mobile.messaging.InboxEventObserver
 
 // Define card style
 val cardStyle = AepCardStyle(
@@ -352,15 +350,12 @@ val cardUIStyle = AepUIStyle(
     imageOnlyUIStyle = imageOnlyCardStyle
 )
 
-// Create an observer to handle inbox and item events
-val observer = remember { InboxEventObserver() }
-
 // Apply to AepInbox
 AepInbox(
     uiState = inboxUIState,
     inboxStyle = inboxStyle,
     itemsStyle = cardUIStyle,
-    observer = observer
+    observer = viewModel.observer
 )
 ```
 
@@ -429,10 +424,10 @@ Use `remember` for style objects that don't change to avoid unnecessary recompos
 #### Kotlin
 
 ```kotlin
-import com.adobe.marketing.mobile.messaging.InboxEventObserver
-
 @Composable
-fun InboxScreen() {
+fun InboxScreen(viewModel: InboxViewModel) {
+    val inboxUIState by viewModel.inboxUIState.collectAsStateWithLifecycle()
+    
     val inboxStyle = remember {
         InboxUIStyle.Builder()
             .headingStyle(headingStyle)
@@ -440,12 +435,10 @@ fun InboxScreen() {
             .build()
     }
     
-    val observer = remember { InboxEventObserver() }
-    
     AepInbox(
         uiState = inboxUIState,
         inboxStyle = inboxStyle,
-        observer = observer
+        observer = viewModel.observer
     )
 }
 ```

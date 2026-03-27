@@ -31,26 +31,42 @@ The `AepInbox` composable requires an `AepInboxEventObserver` to handle inbox-le
 
 ### Using InboxEventObserver
 
-Pass an `InboxEventObserver` to the `AepInbox` composable:
+Create an `InboxEventObserver` in your ViewModel with a reference to the provider:
 
 <CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
 
 #### Kotlin
 
 ```kotlin
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.adobe.marketing.mobile.messaging.InboxEventObserver
+import com.adobe.marketing.mobile.messaging.MessagingInboxProvider
+import com.adobe.marketing.mobile.messaging.Surface
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+
+class InboxViewModel : ViewModel() {
+    val inboxProvider = MessagingInboxProvider(Surface("inbox"))
+    
+    val observer = InboxEventObserver(inboxProvider)
+
+    val inboxUIState = inboxProvider.getInboxUI()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = InboxUIState.Loading
+        )
+}
 
 @Composable
 fun InboxScreen(viewModel: InboxViewModel) {
     val inboxUIState by viewModel.inboxUIState.collectAsStateWithLifecycle()
-    
-    // Create observer - automatically handles inbox events
-    val observer = remember { InboxEventObserver() }
 
     AepInbox(
         uiState = inboxUIState,
         inboxStyle = InboxUIStyle.Builder().build(),
-        observer = observer
+        observer = viewModel.observer
     )
 }
 ```
@@ -59,6 +75,7 @@ The `InboxEventObserver` automatically:
 - Tracks inbox display events when the inbox is shown
 - Prevents duplicate display events for the same inbox state
 - Sends tracking data to Adobe Journey Optimizer
+- Survives configuration changes (screen rotation, theme changes, etc.)
 
 ## Inbox State Changes
 
@@ -82,7 +99,9 @@ Use the Flow returned by `getInboxUI()` to observe state changes:
 
 ```kotlin
 class InboxViewModel : ViewModel() {
-    private val inboxProvider = MessagingInboxProvider(Surface("inbox"))
+    val inboxProvider = MessagingInboxProvider(Surface("inbox"))
+    
+    val observer = InboxEventObserver(inboxProvider)
 
     val inboxUIState: StateFlow<InboxUIState> = inboxProvider.getInboxUI()
         .stateIn(
@@ -123,12 +142,10 @@ fun InboxScreen(viewModel: InboxViewModel) {
         }
     }
 
-    val observer = remember { InboxEventObserver() }
-
     AepInbox(
         uiState = inboxUIState,
         inboxStyle = InboxUIStyle.Builder().build(),
-        observer = observer
+        observer = viewModel.observer
     )
 }
 ```
@@ -188,7 +205,7 @@ Individual content cards within the inbox emit events when users interact with t
 
 1. Implement a `ContentCardUIEventListener` to handle card events
 2. Wrap it in a `ContentCardEventObserver`
-3. Pass the `ContentCardEventObserver` to `InboxEventObserver`
+3. Pass the `ContentCardEventObserver` to `InboxEventObserver` in your ViewModel
 
 ### Example
 
@@ -197,46 +214,61 @@ Individual content cards within the inbox emit events when users interact with t
 #### Kotlin
 
 ```kotlin
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.adobe.marketing.mobile.aepcomposeui.AepUI
 import com.adobe.marketing.mobile.messaging.ContentCardEventObserver
 import com.adobe.marketing.mobile.messaging.ContentCardUIEventListener
 import com.adobe.marketing.mobile.messaging.InboxEventObserver
+import com.adobe.marketing.mobile.messaging.MessagingInboxProvider
+import com.adobe.marketing.mobile.messaging.Surface
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+
+// In ViewModel - observer survives configuration changes
+class InboxViewModel : ViewModel() {
+    private val cardCallback = object : ContentCardUIEventListener {
+        override fun onDisplay(aepUI: AepUI<*, *>) {
+            // Handle card display
+        }
+        
+        override fun onInteract(
+            aepUI: AepUI<*, *>,
+            interactionId: String?,
+            actionUrl: String?
+        ): Boolean {
+            // Handle card interaction
+            return false
+        }
+        
+        override fun onDismiss(aepUI: AepUI<*, *>) {
+            // Handle card dismissal
+        }
+    }
+    
+    val inboxProvider = MessagingInboxProvider(Surface("inbox"))
+    
+    val observer = InboxEventObserver(
+        inboxProvider,
+        ContentCardEventObserver(cardCallback)
+    )
+
+    val inboxUIState = inboxProvider.getInboxUI()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = InboxUIState.Loading
+        )
+}
 
 @Composable
 fun InboxScreen(viewModel: InboxViewModel) {
     val inboxUIState by viewModel.inboxUIState.collectAsStateWithLifecycle()
-    
-    // Create the card event listener
-    val cardCallback = remember { 
-        object : ContentCardUIEventListener {
-            override fun onDisplay(aepUI: AepUI<*, *>) {
-                // Handle card display
-            }
-            
-            override fun onInteract(
-                aepUI: AepUI<*, *>,
-                interactionId: String?,
-                actionUrl: String?
-            ): Boolean {
-                // Handle card interaction
-                return false
-            }
-            
-            override fun onDismiss(aepUI: AepUI<*, *>) {
-                // Handle card dismissal
-            }
-        }
-    }
-    
-    // Wrap in ContentCardEventObserver
-    val contentCardObserver = remember { ContentCardEventObserver(cardCallback) }
-    
-    // Pass to InboxEventObserver which handles inbox display and delegates card events
-    val observer = remember { InboxEventObserver(contentCardObserver) }
 
     AepInbox(
         uiState = inboxUIState,
         inboxStyle = InboxUIStyle.Builder().build(),
-        observer = observer
+        observer = viewModel.observer
     )
 }
 ```
@@ -245,29 +277,21 @@ For detailed information on content card events, implementing `ContentCardUIEven
 
 ## Best Practices
 
-1. **Always Provide an Observer**: The `AepInbox` composable requires an `AepInboxEventObserver`. At minimum, use `InboxEventObserver()` to enable automatic inbox display tracking:
+1. **Create Observer in ViewModel**: Always create the `InboxEventObserver` in your ViewModel with a reference to the provider. This ensures the observer survives configuration changes (screen rotation, theme changes, etc.):
 
 <CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
 
 #### Kotlin
 
 ```kotlin
-val observer = remember { InboxEventObserver() }
+class InboxViewModel : ViewModel() {
+    val inboxProvider = MessagingInboxProvider(Surface("inbox"))
+    val observer = InboxEventObserver(inboxProvider)
+}
 ```
 
 2. **Avoid Heavy Work in Event Handlers**: Event handlers are called on the main thread. Keep them lightweight and dispatch heavy work to background threads.
 
-3. **Use remember for Observers**: Wrap your observer instances in `remember` to avoid recreating them on recomposition:
+3. **Handle Errors Gracefully**: Provide user-friendly error messages and retry options when the inbox fails to load.
 
-<CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
-
-#### Kotlin
-
-```kotlin
-val cardCallback = remember { InboxCardCallback() }
-val contentCardObserver = remember { ContentCardEventObserver(cardCallback) }
-val observer = remember { InboxEventObserver(contentCardObserver) }
-```
-
-4. **Handle Errors Gracefully**: Provide user-friendly error messages and retry options when the inbox fails to load.
-
+4. **Use Lifecycle-aware Collection**: Use `collectAsStateWithLifecycle()` to automatically stop collecting when the UI is not visible.

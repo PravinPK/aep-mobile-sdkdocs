@@ -68,7 +68,7 @@ The Inbox automatically handles layout (vertical/horizontal), styling, and unrea
 
 ## Retrieve Inbox State
 
-To retrieve the inbox state, call `getInboxUI()` on the provider. This returns a Flow of `InboxUIState` objects that represent different states of the inbox:
+To retrieve the inbox state, create a `MessagingInboxProvider` in your ViewModel and call `getInboxUI()`. This returns a Flow of `InboxUIState` objects that represent different states of the inbox:
 
 - `InboxUIState.Loading` - Content is being fetched
 - `InboxUIState.Success` - Content was successfully loaded
@@ -84,13 +84,16 @@ import androidx.lifecycle.viewModelScope
 import com.adobe.marketing.mobile.aepcomposeui.state.InboxUIState
 import com.adobe.marketing.mobile.messaging.MessagingInboxProvider
 import com.adobe.marketing.mobile.messaging.Surface
+import com.adobe.marketing.mobile.messaging.InboxEventObserver
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class InboxViewModel : ViewModel() {
-    private val inboxProvider = MessagingInboxProvider(Surface("inbox"))
+    val inboxProvider = MessagingInboxProvider(Surface("inbox"))
+    
+    val observer = InboxEventObserver(inboxProvider)
 
     // Convert Flow to StateFlow for easier consumption in Compose
     val inboxUIState: StateFlow<InboxUIState> = inboxProvider.getInboxUI()
@@ -124,26 +127,21 @@ The Inbox user interface is implemented using Jetpack Compose. To display the in
 ```kotlin
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.adobe.marketing.mobile.aepcomposeui.components.AepInbox
 import com.adobe.marketing.mobile.aepcomposeui.style.InboxUIStyle
-import com.adobe.marketing.mobile.messaging.InboxEventObserver
 
 @Composable
 fun InboxScreen(viewModel: InboxViewModel = viewModel()) {
     // Collect the inbox state from ViewModel
     val inboxUIState by viewModel.inboxUIState.collectAsStateWithLifecycle()
 
-    // Create an observer to handle inbox and item events
-    val observer = remember { InboxEventObserver() }
-
     // Display the inbox with default styling
     AepInbox(
         uiState = inboxUIState,
         inboxStyle = InboxUIStyle.Builder().build(),
-        observer = observer
+        observer = viewModel.observer
     )
 }
 ```
@@ -160,13 +158,11 @@ To display an Inbox in a View-based (non-Compose) application, use `ComposeView`
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.adobe.marketing.mobile.aepcomposeui.components.AepInbox
 import com.adobe.marketing.mobile.aepcomposeui.style.InboxUIStyle
-import com.adobe.marketing.mobile.messaging.InboxEventObserver
 
 class InboxActivity : AppCompatActivity() {
 
@@ -180,12 +176,11 @@ class InboxActivity : AppCompatActivity() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 val inboxUIState = viewModel.inboxUIState.collectAsStateWithLifecycle().value
-                val observer = remember { InboxEventObserver() }
 
                 AepInbox(
                     uiState = inboxUIState,
                     inboxStyle = InboxUIStyle.Builder().build(),
-                    observer = observer
+                    observer = viewModel.observer
                 )
             }
         }
@@ -265,7 +260,7 @@ AppTheme {
     AepInbox(
         uiState = inboxUIState,
         inboxStyle = InboxUIStyle.Builder().build(),
-        observer = null
+        observer = viewModel.observer
     )
 }
 ```

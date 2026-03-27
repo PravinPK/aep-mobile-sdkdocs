@@ -59,58 +59,52 @@ suspend fun refresh()
 #### Kotlin
 
 ```kotlin
-import androidx.compose.runtime.remember
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.adobe.marketing.mobile.Messaging
-import com.adobe.marketing.mobile.messaging.MessagingInboxProvider
-import com.adobe.marketing.mobile.messaging.Surface
-import com.adobe.marketing.mobile.messaging.InboxEventObserver
 import com.adobe.marketing.mobile.aepcomposeui.components.AepInbox
 import com.adobe.marketing.mobile.aepcomposeui.state.InboxUIState
+import com.adobe.marketing.mobile.messaging.InboxEventObserver
+import com.adobe.marketing.mobile.messaging.MessagingInboxProvider
+import com.adobe.marketing.mobile.messaging.Surface
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
-// Download the inbox and content cards for inbox surface using Messaging extension
-val surfaces = mutableListOf<Surface>()
-val surface = Surface("inbox")
-surfaces.add(surface)
-Messaging.updatePropositionsForSurfaces(surfaces)
+private val inboxSurface = Surface("inbox")
 
-// Initialize the MessagingInboxProvider
-val inboxProvider = MessagingInboxProvider(surface)
+// Prefetch (e.g. on login or before opening the inbox screen)
+Messaging.updatePropositionsForSurfaces(listOf(inboxSurface))
 
-// Get the inbox state within a view model
 class InboxViewModel : ViewModel() {
-    private val inboxProvider = MessagingInboxProvider(Surface("inbox"))
-    
+    val inboxProvider = MessagingInboxProvider(inboxSurface)
+    val observer = InboxEventObserver(inboxProvider)
+
     val inboxUIState: StateFlow<InboxUIState> = inboxProvider.getInboxUI()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = InboxUIState.Loading
         )
-    
+
     fun refresh() {
         viewModelScope.launch {
-            // Fetch latest content from server
-            Messaging.updatePropositionsForSurfaces(listOf(Surface("inbox")))
-            // Update the inbox UI with new content
+            Messaging.updatePropositionsForSurfaces(listOf(inboxSurface))
             inboxProvider.refresh()
         }
     }
 }
 
-// Display the inbox in your composable
 @Composable
 fun InboxScreen(viewModel: InboxViewModel = viewModel()) {
     val inboxUIState by viewModel.inboxUIState.collectAsState()
-    
-    // Create an observer to handle inbox and item events
-    val observer = remember { InboxEventObserver() }
-    
+
     MaterialTheme {
         AepInbox(
             uiState = inboxUIState,
-            observer = observer
+            observer = viewModel.observer
         )
     }
 }
 ```
-

@@ -537,6 +537,10 @@ module.exports = {
                                                         path: "/edge/adobe-journey-optimizer/content-card-ui/Android/public-classes/ui-models/aepbutton"
                                                     },
                                                     {
+                                                        title: "AEPColor",
+                                                        path: "/edge/adobe-journey-optimizer/content-card-ui/Android/public-classes/ui-models/aepcolor"
+                                                    },
+                                                    {
                                                         title: "AEPIcon",
                                                         path: "/edge/adobe-journey-optimizer/content-card-ui/Android/public-classes/ui-models/aepicon"
                                                     },

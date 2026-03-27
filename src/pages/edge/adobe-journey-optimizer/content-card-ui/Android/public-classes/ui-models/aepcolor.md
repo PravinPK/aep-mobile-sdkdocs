@@ -15,14 +15,14 @@ keywords:
 
 # AepColor
 
-Data class representing a color that adapts to light and dark themes.
+Data class representing colors for both light and dark themes in AEP UI components.
 
 ## Public Properties
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `light` | [Color](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color) | The color to use in light theme. |
-| `dark` | [Color](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color) | The color to use in dark theme. |
+| `light` | [Color](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color) | The color to use in light theme mode. |
+| `dark` | [Color](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color)? | The color to use in dark theme mode. |
 
 ## Usage Example
 

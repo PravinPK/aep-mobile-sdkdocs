@@ -60,19 +60,14 @@ The `AepInbox` composable automatically:
 #### Kotlin
 
 ```kotlin
-import com.adobe.marketing.mobile.messaging.InboxEventObserver
-
 @Composable
 fun InboxScreen(viewModel: InboxViewModel = viewModel()) {
     val inboxUIState by viewModel.inboxUIState.collectAsState()
     
-    // Create an observer to handle inbox and item events
-    val observer = remember { InboxEventObserver() }
-    
     MaterialTheme {
         AepInbox(
             uiState = inboxUIState,
-            observer = observer
+            observer = viewModel.observer
         )
     }
 }
@@ -85,8 +80,6 @@ fun InboxScreen(viewModel: InboxViewModel = viewModel()) {
 #### Kotlin
 
 ```kotlin
-import com.adobe.marketing.mobile.messaging.InboxEventObserver
-
 @Composable
 fun CustomInboxScreen(viewModel: InboxViewModel = viewModel()) {
     val inboxUIState by viewModel.inboxUIState.collectAsState()
@@ -118,14 +111,12 @@ fun CustomInboxScreen(viewModel: InboxViewModel = viewModel()) {
         )
     }
     
-    val observer = remember { InboxEventObserver() }
-    
     MaterialTheme {
         AepInbox(
             uiState = inboxUIState,
             inboxStyle = inboxStyle,
             itemsStyle = cardStyle,
-            observer = observer
+            observer = viewModel.observer
         )
     }
 }
@@ -133,71 +124,78 @@ fun CustomInboxScreen(viewModel: InboxViewModel = viewModel()) {
 
 ### With Content Card Event Listener
 
-To listen to content card events (display, interact, dismiss), implement [ContentCardUIEventListener](../../../content-card-ui/Android/public-classes/contentcarduieventlistener.md) and pass it through the observer chain:
+To listen to content card events (display, interact, dismiss), implement [ContentCardUIEventListener](../../../content-card-ui/Android/public-classes/contentcarduieventlistener.md) and pass it to the `InboxEventObserver` in your ViewModel:
 
 <CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
 
 #### Kotlin
 
 ```kotlin
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.lifecycle.compose.collectAsState
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.adobe.marketing.mobile.aepcomposeui.AepUI
 import com.adobe.marketing.mobile.messaging.ContentCardEventObserver
 import com.adobe.marketing.mobile.messaging.ContentCardUIEventListener
 import com.adobe.marketing.mobile.messaging.InboxEventObserver
+import com.adobe.marketing.mobile.messaging.MessagingInboxProvider
+import com.adobe.marketing.mobile.messaging.Surface
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+
+// In ViewModel - observer survives configuration changes
+class InboxViewModel : ViewModel() {
+    private val cardEventListener = object : ContentCardUIEventListener {
+        override fun onDisplay(aepUI: AepUI<*, *>) {
+            // Called when a content card is displayed
+        }
+        
+        override fun onInteract(
+            aepUI: AepUI<*, *>,
+            interactionId: String?,
+            actionUrl: String?
+        ): Boolean {
+            // Called when user taps on a card or button
+            // Handle custom deep links
+            actionUrl?.let { url ->
+                handleDeepLink(url)
+                return true // Return true to indicate URL was handled
+            }
+            
+            // Return false to let SDK handle the URL (open in browser)
+            return false
+        }
+        
+        override fun onDismiss(aepUI: AepUI<*, *>) {
+            // Called when user dismisses a card
+        }
+    }
+    
+    val inboxProvider = MessagingInboxProvider(Surface("inbox"))
+    
+    val observer = InboxEventObserver(
+        inboxProvider,
+        ContentCardEventObserver(cardEventListener)
+    )
+
+    val inboxUIState = inboxProvider.getInboxUI()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = InboxUIState.Loading
+        )
+}
 
 @Composable
 fun InboxWithEventsScreen(viewModel: InboxViewModel = viewModel()) {
     val inboxUIState by viewModel.inboxUIState.collectAsState()
     
-    // Step 1: Implement ContentCardUIEventListener to handle card events
-    val cardEventListener = remember {
-        object : ContentCardUIEventListener {
-            override fun onDisplay(aepUI: AepUI<*, *>) {
-                // Called when a content card is displayed
-            }
-            
-            override fun onInteract(
-                aepUI: AepUI<*, *>,
-                interactionId: String?,
-                actionUrl: String?
-            ): Boolean {
-                // Called when user taps on a card or button                
-                // Handle custom deep links
-                actionUrl?.let { url ->
-                    handleDeepLink(url)
-                    return true // Return true to indicate URL was handled
-                }
-                
-                // Return false to let SDK handle the URL
-                return false
-            }
-            
-            override fun onDismiss(aepUI: AepUI<*, *>) {
-                // Called when user dismisses a card
-            }
-        }
-    }
-    
-    // Step 2: Wrap the listener in ContentCardEventObserver
-    val contentCardObserver = remember { ContentCardEventObserver(cardEventListener) }
-    
-    // Step 3: Pass ContentCardEventObserver to InboxEventObserver
-    // InboxEventObserver handles inbox-level events and delegates card events
-    val observer = remember { InboxEventObserver(contentCardObserver) }
-    
     MaterialTheme {
         AepInbox(
             uiState = inboxUIState,
-            observer = observer
+            observer = viewModel.observer
         )
     }
 }
 ```
 
 For detailed information on the `ContentCardUIEventListener` callbacks, see [ContentCardUIEventListener](../../../content-card-ui/Android/public-classes/contentcarduieventlistener.md).
-

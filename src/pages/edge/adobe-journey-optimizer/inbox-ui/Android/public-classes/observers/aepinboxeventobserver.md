@@ -50,3 +50,10 @@ fun onInboxEvent(event: InboxEvent)
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | event | [InboxEvent](./inboxevent.md) | The inbox event to handle. Currently supports `InboxEvent.Display`. |
+
+## Implementation
+
+The Messaging extension provides [InboxEventObserver](./inboxeventobserver.md) as the standard implementation of this interface. It automatically:
+- Tracks inbox display events
+- Delegates item-level events to provided observers
+- Prevents duplicate display tracking

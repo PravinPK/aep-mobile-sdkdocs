@@ -14,6 +14,7 @@ keywords:
 # InboxEvent
 
 Represents different types of inbox-level events triggered by lifecycle changes or user interactions with the inbox container. All inbox events include the current [InboxUIState](../inboxuistate.md) when the event occurred.
+`InboxEvent` represents events on the inbox as a whole, as opposed to [UIEvent](../../../../content-card-ui/Android/public-classes/uievent.md) which represents events on individual cards (display, dismiss, interact). 
 
 ## Class Definition
 

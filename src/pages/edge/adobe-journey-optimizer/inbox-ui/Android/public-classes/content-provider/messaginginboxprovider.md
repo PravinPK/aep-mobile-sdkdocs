@@ -60,7 +60,8 @@ Emits `InboxUIState.Loading` before fetching, then emits `InboxUIState.Success` 
 
 <InlineAlert variant="info" slots="text"/>
 
-`getInboxUI` automatically loads initial content when first collected, so this method is only needed for manual refresh operations.
+`getInboxUI` automatically loads initial content when first collected, so you only need `refresh` for manual refresh (for example after `updatePropositionsForSurfaces`).
+
 
 #### Syntax
 
