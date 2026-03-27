@@ -59,8 +59,9 @@ val inboxProvider = MessagingInboxProvider(surface)
 ```
 
 The `MessagingInboxProvider` provides the following APIs:
-- `getInboxUI()` - Returns a [Flow](https://developer.android.com/kotlin/flow) of `InboxUIState` representing the current state of the inbox.
-- `refresh()` - Manually refreshes the inbox content by fetching new propositions.
+
+* `getInboxUI()` - Returns a [Flow](https://developer.android.com/kotlin/flow) of `InboxUIState` representing the current state of the inbox.
+* `refresh()` - Manually refreshes the inbox content by fetching new propositions.
 
 <InlineAlert variant="info" slots="text"/>
 
@@ -70,9 +71,9 @@ The Inbox automatically handles layout (vertical/horizontal), styling, and unrea
 
 To retrieve the inbox state, create a `MessagingInboxProvider` in your ViewModel and call `getInboxUI()`. This returns a Flow of `InboxUIState` objects that represent different states of the inbox:
 
-- `InboxUIState.Loading` - Content is being fetched
-- `InboxUIState.Success` - Content was successfully loaded
-- `InboxUIState.Error` - An error occurred while fetching content
+* `InboxUIState.Loading` - Content is being fetched
+* `InboxUIState.Success` - Content was successfully loaded
+* `InboxUIState.Error` - An error occurred while fetching content
 
 <CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
 
@@ -220,13 +221,15 @@ Button(onClick = { viewModel.refresh() }) {
 ```
 
 This is useful for:
-- Refreshing on button taps
-- Auto-refreshing at intervals
-- Refreshing after specific app events
+
+* Refreshing on button taps
+* Auto-refreshing at intervals
+* Refreshing after specific app events
 
 ### Automatic Refresh on Initial Load
 
 The `getInboxUI()` method automatically calls `refresh()` when first collected, so you don't need to manually trigger the initial load. The flow will emit:
+
 1. `InboxUIState.Loading` - Immediately upon collection
 2. `InboxUIState.Success` or `InboxUIState.Error` - After the fetch completes
 
@@ -320,4 +323,3 @@ val notificationsProvider = MessagingInboxProvider(Surface("notifications"))
 // Promotions inbox  
 val promotionsProvider = MessagingInboxProvider(Surface("promotions"))
 ```
-

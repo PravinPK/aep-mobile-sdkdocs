@@ -59,4 +59,3 @@ val inboxStyle = InboxUIStyle.Builder()
     }
     .build()
 ```
-

@@ -62,7 +62,6 @@ Emits `InboxUIState.Loading` before fetching, then emits `InboxUIState.Success` 
 
 `getInboxUI` automatically loads initial content when first collected, so you only need `refresh` for manual refresh (for example after `updatePropositionsForSurfaces`).
 
-
 #### Syntax
 
 <CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
@@ -97,4 +96,3 @@ class InboxViewModel : ViewModel() {
     }
 }
 ```
-

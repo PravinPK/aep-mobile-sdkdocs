@@ -27,4 +27,3 @@ Class representing the style for an AepLazyRow component.
 | verticalAlignment | [Alignment.Vertical](https://developer.android.com/reference/kotlin/androidx/compose/ui/Alignment.Vertical)? | The vertical alignment of the items in the LazyRow. |
 | flingBehavior | [FlingBehavior](https://developer.android.com/reference/kotlin/androidx/compose/foundation/gestures/FlingBehavior)? | The fling behavior for the LazyRow. |
 | userScrollEnabled | Boolean? | Whether user scrolling is enabled for the LazyRow. |
-

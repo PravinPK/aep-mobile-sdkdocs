@@ -21,9 +21,9 @@ This tutorial explains how to listen to events from the Inbox in your applicatio
 
 The Messaging extension provides ways to monitor:
 
-- **Inbox-Level Events**: Track inbox display events using `InboxEventObserver`
-- **Inbox State Changes**: Track loading, success, and error states of the inbox container
-- **Content Card Events**: Listen to user interactions with individual cards within the inbox
+* **Inbox-Level Events**: Track inbox display events using `InboxEventObserver`
+* **Inbox State Changes**: Track loading, success, and error states of the inbox container
+* **Content Card Events**: Listen to user interactions with individual cards within the inbox
 
 ## Inbox-Level Events
 
@@ -72,10 +72,11 @@ fun InboxScreen(viewModel: InboxViewModel) {
 ```
 
 The `InboxEventObserver` automatically:
-- Tracks inbox display events when the inbox is shown
-- Prevents duplicate display events for the same inbox state
-- Sends tracking data to Adobe Journey Optimizer
-- Survives configuration changes (screen rotation, theme changes, etc.)
+
+* Tracks inbox display events when the inbox is shown
+* Prevents duplicate display events for the same inbox state
+* Sends tracking data to Adobe Journey Optimizer
+* Survives configuration changes (screen rotation, theme changes, etc.)
 
 ## Inbox State Changes
 
@@ -154,8 +155,8 @@ fun InboxScreen(viewModel: InboxViewModel) {
 
 When the inbox loads successfully, `InboxUIState.Success` contains:
 
-- `template`: The inbox template with heading, layout, and styling information
-- `items`: List of `AepUI` objects representing the content cards
+* `template`: The inbox template with heading, layout, and styling information
+* `items`: List of `AepUI` objects representing the content cards
 
 <CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
 

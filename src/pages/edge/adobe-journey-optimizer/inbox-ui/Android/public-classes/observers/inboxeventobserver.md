@@ -15,9 +15,9 @@ keywords:
 
 Implementation of [AepInboxEventObserver](./aepinboxeventobserver.md) for handling inbox-level events and delegating item-level events to content card observers.
 
-- **Handles inbox events**: Automatically tracks inbox display events and sends them to Adobe Journey Optimizer
-- **Delegates item events**: Forwards content card events (display, interact, dismiss) to the provided observer
-- **Prevents duplicates**: Avoids sending redundant inbox display tracking for the same successful load (handled inside the Messaging SDK)
+* **Handles inbox events**: Automatically tracks inbox display events and sends them to Adobe Journey Optimizer
+* **Delegates item events**: Forwards content card events (display, interact, dismiss) to the provided observer
+* **Prevents duplicates**: Avoids sending redundant inbox display tracking for the same successful load (handled inside the Messaging SDK)
 
 ## Constructor
 

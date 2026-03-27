@@ -14,8 +14,9 @@ keywords:
 # AepInboxEventObserver
 
 Interface for observing inbox-level events in addition to item-level UI events. `AepInboxEventObserver` extends [AepUIEventObserver](../../../../content-card-ui/Android/public-classes/observers/aepuieventobserver.md) to add inbox-specific event handling. This allows implementations to handle both:
-- **Individual item events**: Display, dismiss, and interact events for content cards
-- **Inbox-level events**: Display events for the inbox container itself
+
+* **Individual item events**: Display, dismiss, and interact events for content cards
+* **Inbox-level events**: Display events for the inbox container itself
 
 ## Interface Definition
 
@@ -54,6 +55,7 @@ fun onInboxEvent(event: InboxEvent)
 ## Implementation
 
 The Messaging extension provides [InboxEventObserver](./inboxeventobserver.md) as the standard implementation of this interface. It automatically:
-- Tracks inbox display events
-- Delegates item-level events to provided observers
-- Prevents duplicate display tracking
+
+* Tracks inbox display events
+* Delegates item-level events to provided observers
+* Prevents duplicate display tracking

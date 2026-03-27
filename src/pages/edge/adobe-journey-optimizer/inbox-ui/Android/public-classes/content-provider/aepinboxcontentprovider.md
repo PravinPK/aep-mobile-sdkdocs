@@ -64,4 +64,3 @@ Refreshes the Inbox content and updates the data into the flow returned by [getI
 ```kotlin
 suspend fun refresh()
 ```
-

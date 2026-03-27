@@ -21,10 +21,10 @@ This tutorial explains how to customize the appearance and behavior of the Inbox
 
 The `AepInbox` composable provides extensive customization options to match your app's design system. You can customize:
 
-- **Inbox Container**: Heading, list layout, padding, and spacing
-- **Custom Views**: Loading, error, and empty state views
-- **Unread Indicators**: Icon style, alignment, and background color
-- **Content Cards**: Individual card appearance through `AepUIStyle`
+* **Inbox Container**: Heading, list layout, padding, and spacing
+* **Custom Views**: Loading, error, and empty state views
+* **Unread Indicators**: Icon style, alignment, and background color
+* **Content Cards**: Individual card appearance through `AepUIStyle`
 
 All customizations are applied using the `InboxUIStyle` builder and `AepUIStyle` when rendering the `AepInbox` composable.
 
@@ -447,9 +447,9 @@ fun InboxScreen(viewModel: InboxViewModel) {
 
 Follow Android accessibility guidelines when customizing:
 
-- Maintain sufficient color contrast ratios (4.5:1 for normal text, 3:1 for large text)
-- Ensure touch targets are at least 48dp × 48dp
-- Use semantic colors that convey meaning in both light and dark themes
+* Maintain sufficient color contrast ratios (4.5:1 for normal text, 3:1 for large text)
+* Ensure touch targets are at least 48dp × 48dp
+* Use semantic colors that convey meaning in both light and dark themes
 
 ### 7. Consider Screen Sizes
 
@@ -466,4 +466,3 @@ val cardStyle = AepCardStyle(
         .padding(horizontal = 16.dp, vertical = 8.dp)
 )
 ```
-

@@ -27,4 +27,3 @@ Class representing the style for an AepLazyColumn component.
 | horizontalAlignment | [Alignment.Horizontal](https://developer.android.com/reference/kotlin/androidx/compose/ui/Alignment.Horizontal)? | The horizontal alignment of the items in the LazyColumn. |
 | flingBehavior | [FlingBehavior](https://developer.android.com/reference/kotlin/androidx/compose/foundation/gestures/FlingBehavior)? | The fling behavior for the LazyColumn. |
 | userScrollEnabled | Boolean? | Whether user scrolling is enabled for the LazyColumn. |
-
