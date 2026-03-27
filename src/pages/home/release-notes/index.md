@@ -7,9 +7,60 @@ Keywords:
 
 # Release notes
 
-## January 29, 2026
+## March 18, 2026
 
-### Android BOM 3.16.0
+### iOS Brand Concierge 5.2.0
+
+* Added an optional `handleLink` callback to `Concierge.show()`, `Concierge.wrap()`, and `Concierge.present(on:)` giving host apps control over link resolution, with automatic fallback to universal link verification and in-app WebView.
+* Fixed an issue where in-app WebView page navigation could reload the original URL instead of allowing normal page transitions.
+
+## March 12, 2026
+
+### Android Brand Concierge 3.1.0
+
+* Added a new `productDetail` carousel card style featuring a large image, badge overlay, product name, subtitle, current price, and "was" price. Can be displayed as a standalone card or within a carousel.
+* Added a new `carouselStyle` behavior property (`"scroll"` or `"paged"`) and supporting theme CSS variables for product card styling.
+* Added an optional `handleLink` callback to `ConciergeChat` giving host apps control over link resolution, with automatic fallback to Android App Link verification and in-app WebView.
+
+### iOS Brand Concierge 5.1.0
+
+* Added a new `productDetail` carousel card style featuring a large image, badge overlay, product name, subtitle, current price, and "was" price. Can be displayed as a standalone card or within a carousel.
+* Added a new `carouselStyle` behavior property (`"scroll"` or `"paged"`) and supporting theme CSS variables for product card styling.
+* Added universal link routing support for http/https URLs in `ConciergeLinkHandler`.
+
+## March 3, 2026
+
+### Android Brand Concierge 3.0.3
+
+* Resolved an issue with parsing multimodal elements in Concierge responses.
+* Replaced experimental Jetpack components to improve stability and compatibility.
+
+## February 23, 2026
+
+### Android Brand Concierge 3.0.2
+
+* Update the default Consent value to `in` for apps which do not have the Consent extension installed.
+
+## February 20, 2026
+
+### iOS Messaging 5.11.0
+
+* Simple registration API - Register Live Activity types with a single call to `Messaging.registerLiveActivities([...])` at app launch. The SDK automatically manages token collection and lifecycle.
+* Managed push-to-start tokens - Adobe Experience Platform automatically observes and collects push-to-start tokens (iOS 17.2+) for registered Live Activity types and syncs them to AEP for remote activity creation.
+* Managed update tokens - Update tokens are automatically collected for active Live Activities and synced to Edge for remote updates via Adobe Journey Optimizer.
+* Transactional Live Activities - Supports one-to-one use cases (e.g., order tracking) using a unique liveActivityID, enabling targeted pushes per user.
+* Broadcast Live Activities - Supports one-to-many use cases (e.g., sports scores) using a channelID, allowing multiple users to receive shared real-time updates.
+
+### iOS Messaging 5.10.0
+
+* Added ReEvaluation Interceptor in Messaging to perform ReEvaluation of rules
+* Provided completion in case of failure or timeout for refresh and update calls
+* Added RefreshInAppHandler for deduplication of multiple Refresh calls with thread safety
+* Added public API to Message.swift that records a display event in the device's event history
+
+## February 19, 2026
+
+### Android BOM 3.17.0
 
 * This BOM ([Bill of Materials](https://central.sonatype.com/artifact/com.adobe.marketing.mobile/sdk-bom)) release includes changes to the following Android extensions.
 
@@ -17,15 +68,15 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.15.1) | BOM (3.16.0) |
+| Extension artifact | BOM (3.16.0) | BOM (3.17.0) |
 |-----|-----|-----|
-| **com.adobe.marketing.mobile:messaging** | **3.5.1** | **3.6.0**|
+| **com.adobe.marketing.mobile:core** | **3.5.0** | **3.6.0**|
+| **com.adobe.marketing.mobile:messaging** | **3.6.0** | **3.7.0**|
 | com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
 | com.adobe.marketing.mobile:assurance | 3.0.7 | 3.0.7 |
 | com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
 | com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
 | com.adobe.marketing.mobile:campaignclassic | 3.1.4 | 3.1.4 |
-| com.adobe.marketing.mobile:core | 3.5.0 | 3.5.0 |
 | com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
 | com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
 | com.adobe.marketing.mobile:edgeconsent | 3.0.2 | 3.0.2 |
@@ -45,6 +96,79 @@ Keywords:
 
 </Accordion>
 
+### Android Messaging 3.7.0
+
+* Reevaluation Changes to support validation of IAM before display
+* Patch for returning callback for updateProposition in case of API failure
+* Added public API to Message.java that records a display event in the device's event history. Patch for allowing message suppression
+
+### Android Core 3.6.0
+
+* Added ReEvaluation support in Launch Rules Engine
+
+### Android Brand Concierge 3.0.1
+
+* Fix the Consent payload sent in Concierge requests.
+
+## February 18, 2026
+
+### iOS Core 5.8.0
+
+* Added support for Re-Evaluation of rules in rules engine to be used for schema type consequences
+* Ensured that the message requesting a fullscreen dismiss is the same message currently being shown
+
+### Android Brand Concierge 3.0.0
+
+* Initial release of Adobe Brand Concierge Android SDK
+  * Transform your digital properties into interactive, conversational experiences that guide discovery, anticipate customer needs, and build trust with Brand Concierge — powered by AI.
+  * [Official documentation](https://business.adobe.com/products/brand-concierge.html)
+
+## February 17, 2026
+
+### iOS Brand Concierge 5.0.0
+
+* Initial release of Adobe Brand Concierge iOS SDK
+  * Transform your digital properties into interactive, conversational experiences that guide discovery, anticipate customer needs, and build trust with Brand Concierge — powered by AI.
+  * [Official documentation](https://business.adobe.com/products/brand-concierge.html)
+
+## January 29, 2026
+
+### Android BOM 3.16.0
+
+* This BOM ([Bill of Materials](https://central.sonatype.com/artifact/com.adobe.marketing.mobile/sdk-bom)) release includes changes to the following Android extensions.
+
+<Accordion>
+
+<AccordionItem header='Expand'>
+
+| Extension artifact                             | BOM (3.15.1) | BOM (3.16.0) |
+| ---------------------------------------------- | ------------ | ------------ |
+| **com.adobe.marketing.mobile:messaging**       | **3.5.1**    | **3.6.0**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:assurance           | 3.0.7        | 3.0.7        |
+| com.adobe.marketing.mobile:audience            | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.4        | 3.1.4        |
+| com.adobe.marketing.mobile:core                | 3.5.0        | 3.5.0        |
+| com.adobe.marketing.mobile:edge                | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2        | 3.1.2        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:optimize            | 3.6.2        | 3.6.2        |
+| com.adobe.marketing.mobile:places              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1        | 3.0.1        |
+
+</AccordionItem>
+
+</Accordion>
+
 ### Android Messaging 3.6.0
 
 * Added AJO decisioning support in Push notification.
@@ -59,7 +183,7 @@ Keywords:
 
 ### React Native Messaging 7.3.0
 
-* Added `evaluteJavascript` API
+* Added `evaluateJavascript` API
 * Added support for React Native 0.81 and higher
 
 ## January 7, 2026
@@ -89,29 +213,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.15.0) | BOM (3.15.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:messaging** | **3.5.0** | **3.5.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.7 | 3.0.7 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.4 | 3.1.4 |
-| com.adobe.marketing.mobile:core | 3.5.0 | 3.5.0 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:optimize | 3.6.2 | 3.6.2 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.15.0) | BOM (3.15.1) |
+| ---------------------------------------------- | ------------ | ------------ |
+| **com.adobe.marketing.mobile:messaging**       | **3.5.0**    | **3.5.1**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:assurance           | 3.0.7        | 3.0.7        |
+| com.adobe.marketing.mobile:audience            | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.4        | 3.1.4        |
+| com.adobe.marketing.mobile:core                | 3.5.0        | 3.5.0        |
+| com.adobe.marketing.mobile:edge                | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2        | 3.1.2        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:optimize            | 3.6.2        | 3.6.2        |
+| com.adobe.marketing.mobile:places              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1        | 3.0.1        |
 
 </AccordionItem>
 
@@ -184,29 +308,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.14.1) | BOM (3.15.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:edgeconsent** | **3.0.1** | **3.0.2**|
-| **com.adobe.marketing.mobile:messaging** | **3.4.1** | **3.5.0**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.7 | 3.0.7 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.4 | 3.1.4 |
-| com.adobe.marketing.mobile:core | 3.5.0 | 3.5.0 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:optimize | 3.6.2 | 3.6.2 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.14.1) | BOM (3.15.0) |
+| ---------------------------------------------- | ------------ | ------------ |
+| **com.adobe.marketing.mobile:edgeconsent**     | **3.0.1**    | **3.0.2**    |
+| **com.adobe.marketing.mobile:messaging**       | **3.4.1**    | **3.5.0**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:assurance           | 3.0.7        | 3.0.7        |
+| com.adobe.marketing.mobile:audience            | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.4        | 3.1.4        |
+| com.adobe.marketing.mobile:core                | 3.5.0        | 3.5.0        |
+| com.adobe.marketing.mobile:edge                | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2        | 3.1.2        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:optimize            | 3.6.2        | 3.6.2        |
+| com.adobe.marketing.mobile:places              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1        | 3.0.1        |
 
 </AccordionItem>
 
@@ -244,29 +368,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.14.0) | BOM (3.14.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:messaging** | **3.4.0** | **3.4.1**|
-| **com.adobe.marketing.mobile:optimize** | **3.6.1** | **3.6.2**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.7 | 3.0.7 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.4 | 3.1.4 |
-| com.adobe.marketing.mobile:core | 3.5.0 | 3.5.0 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.14.0) | BOM (3.14.1) |
+| ---------------------------------------------- | ------------ | ------------ |
+| **com.adobe.marketing.mobile:messaging**       | **3.4.0**    | **3.4.1**    |
+| **com.adobe.marketing.mobile:optimize**        | **3.6.1**    | **3.6.2**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:assurance           | 3.0.7        | 3.0.7        |
+| com.adobe.marketing.mobile:audience            | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.4        | 3.1.4        |
+| com.adobe.marketing.mobile:core                | 3.5.0        | 3.5.0        |
+| com.adobe.marketing.mobile:edge                | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2        | 3.1.2        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:places              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1        | 3.0.1        |
 
 </AccordionItem>
 
@@ -301,29 +425,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.13.0) | BOM (3.14.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:core** | **3.4.1** | **3.5.0**|
-| **com.adobe.marketing.mobile:messaging** | **3.3.2** | **3.4.0**|
-| **com.adobe.marketing.mobile:optimize** | **3.6.0** | **3.6.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.7 | 3.0.7 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.4 | 3.1.4 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.13.0) | BOM (3.14.0) |
+| ---------------------------------------------- | ------------ | ------------ |
+| **com.adobe.marketing.mobile:core**            | **3.4.1**    | **3.5.0**    |
+| **com.adobe.marketing.mobile:messaging**       | **3.3.2**    | **3.4.0**    |
+| **com.adobe.marketing.mobile:optimize**        | **3.6.0**    | **3.6.1**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:assurance           | 3.0.7        | 3.0.7        |
+| com.adobe.marketing.mobile:audience            | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.4        | 3.1.4        |
+| com.adobe.marketing.mobile:edge                | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2        | 3.1.2        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:places              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1        | 3.0.1        |
 
 </AccordionItem>
 
@@ -344,8 +468,8 @@ Keywords:
 ### iOS Core 5.6.0
 
 * Adds rules engine support for the new event history operations `insert` and `insertIfNotExists`.
-    * `insert` unconditionally records consequence content as an event history entry.
-    * `insertIfNotExists` records the entry only when no existing record shares the same hash.
+  * `insert` unconditionally records consequence content as an event history entry.
+  * `insertIfNotExists` records the entry only when no existing record shares the same hash.
 * Adds support for the new `mostRecent` historical condition type, which allows rules engine to evaluate the most recently occurring event from a list of events.
 
 ### Android Optimize 3.6.1
@@ -359,8 +483,8 @@ Keywords:
 
 * Fixed an issue causing incorrect inset calculation for in-app messages.
 * Adds rules engine support for the new event history operations `insert` and `insertIfNotExists`.
-    * `insert` unconditionally records consequence content as an event history entry.
-    * `insertIfNotExists` records the entry only when no existing record shares the same hash.
+  * `insert` unconditionally records consequence content as an event history entry.
+  * `insertIfNotExists` records the entry only when no existing record shares the same hash.
 * Adds support for the new `mostRecent` historical condition type, which allows rules engine to evaluate the most recently occurring event from a list of events.
 
 ## July 10, 2025
@@ -401,29 +525,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.12.0) | BOM (3.13.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:assurance** | **3.0.6** | **3.0.7**|
-| **com.adobe.marketing.mobile:campaignclassic** | **3.1.3** | **3.1.4**|
-| **com.adobe.marketing.mobile:core** | **3.4.0** | **3.4.1**|
-| **com.adobe.marketing.mobile:optimize** | **3.5.0** | **3.6.0**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:messaging | 3.3.2 | 3.3.2 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.12.0) | BOM (3.13.0) |
+| ---------------------------------------------- | ------------ | ------------ |
+| **com.adobe.marketing.mobile:assurance**       | **3.0.6**    | **3.0.7**    |
+| **com.adobe.marketing.mobile:campaignclassic** | **3.1.3**    | **3.1.4**    |
+| **com.adobe.marketing.mobile:core**            | **3.4.0**    | **3.4.1**    |
+| **com.adobe.marketing.mobile:optimize**        | **3.5.0**    | **3.6.0**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:audience            | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:edge                | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2        | 3.1.2        |
+| com.adobe.marketing.mobile:messaging           | 3.3.2        | 3.3.2        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:places              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1        | 3.0.1        |
 
 </AccordionItem>
 
@@ -475,29 +599,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.11.0) | BOM (3.12.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:core** | **3.3.1** | **3.4.0**|
-| **com.adobe.marketing.mobile:messaging** | **3.3.1** | **3.3.2**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.6 | 3.0.6 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.3 | 3.1.3 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:optimize | 3.5.0 | 3.5.0 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.11.0) | BOM (3.12.0) |
+| ---------------------------------------------- | ------------ | ------------ |
+| **com.adobe.marketing.mobile:core**            | **3.3.1**    | **3.4.0**    |
+| **com.adobe.marketing.mobile:messaging**       | **3.3.1**    | **3.3.2**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:assurance           | 3.0.6        | 3.0.6        |
+| com.adobe.marketing.mobile:audience            | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.3        | 3.1.3        |
+| com.adobe.marketing.mobile:edge                | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2        | 3.1.2        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:optimize            | 3.5.0        | 3.5.0        |
+| com.adobe.marketing.mobile:places              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1        | 3.0.1        |
 
 </AccordionItem>
 
@@ -539,29 +663,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.10.0) | BOM (3.11.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:optimize** | **3.4.0** | **3.5.0**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.6 | 3.0.6 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.3 | 3.1.3 |
-| com.adobe.marketing.mobile:core | 3.3.1 | 3.3.1 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:messaging | 3.3.1 | 3.3.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.10.0) | BOM (3.11.0) |
+| ---------------------------------------------- | ------------ | ------------ |
+| **com.adobe.marketing.mobile:optimize**        | **3.4.0**    | **3.5.0**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:assurance           | 3.0.6        | 3.0.6        |
+| com.adobe.marketing.mobile:audience            | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.3        | 3.1.3        |
+| com.adobe.marketing.mobile:core                | 3.3.1        | 3.3.1        |
+| com.adobe.marketing.mobile:edge                | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2        | 3.1.2        |
+| com.adobe.marketing.mobile:messaging           | 3.3.1        | 3.3.1        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3        | 3.0.3        |
+| com.adobe.marketing.mobile:places              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1        | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2        | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1        | 3.0.1        |
 
 </AccordionItem>
 
@@ -587,29 +711,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.9.2) | BOM (3.10.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:optimize** | **3.3.1** | **3.4.0**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.6 | 3.0.6 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.3 | 3.1.3 |
-| com.adobe.marketing.mobile:core | 3.3.1 | 3.3.1 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:messaging | 3.3.1 | 3.3.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.9.2) | BOM (3.10.0) |
+| ---------------------------------------------- | ----------- | ------------ |
+| **com.adobe.marketing.mobile:optimize**        | **3.3.1**   | **3.4.0**    |
+| com.adobe.marketing.mobile:analytics           | 3.0.2       | 3.0.2        |
+| com.adobe.marketing.mobile:assurance           | 3.0.6       | 3.0.6        |
+| com.adobe.marketing.mobile:audience            | 3.0.1       | 3.0.1        |
+| com.adobe.marketing.mobile:campaign            | 3.0.3       | 3.0.3        |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.3       | 3.1.3        |
+| com.adobe.marketing.mobile:core                | 3.3.1       | 3.3.1        |
+| com.adobe.marketing.mobile:edge                | 3.0.2       | 3.0.2        |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1       | 3.0.1        |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1       | 3.0.1        |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1       | 3.0.1        |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1       | 3.0.1        |
+| com.adobe.marketing.mobile:identity            | 3.0.2       | 3.0.2        |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2       | 3.0.2        |
+| com.adobe.marketing.mobile:media               | 3.1.2       | 3.1.2        |
+| com.adobe.marketing.mobile:messaging           | 3.3.1       | 3.3.1        |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3       | 3.0.3        |
+| com.adobe.marketing.mobile:places              | 3.0.2       | 3.0.2        |
+| com.adobe.marketing.mobile:signal              | 3.0.1       | 3.0.1        |
+| com.adobe.marketing.mobile:target              | 3.0.2       | 3.0.2        |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1       | 3.0.1        |
 
 </AccordionItem>
 
@@ -687,29 +811,29 @@ Keywords:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.9.1) | BOM (3.9.2) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:optimize** | **3.3.0** | **3.3.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.6 | 3.0.6 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.3 | 3.1.3 |
-| com.adobe.marketing.mobile:core | 3.3.1 | 3.3.1 |
-| com.adobe.marketing.mobile:edge | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:messaging | 3.3.1 | 3.3.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.9.1) | BOM (3.9.2) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:optimize**        | **3.3.0**   | **3.3.1**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:assurance           | 3.0.6       | 3.0.6       |
+| com.adobe.marketing.mobile:audience            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaign            | 3.0.3       | 3.0.3       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.3       | 3.1.3       |
+| com.adobe.marketing.mobile:core                | 3.3.1       | 3.3.1       |
+| com.adobe.marketing.mobile:edge                | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:identity            | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:media               | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:messaging           | 3.3.1       | 3.3.1       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3       | 3.0.3       |
+| com.adobe.marketing.mobile:places              | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:signal              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:target              | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1       | 3.0.1       |
 
 </AccordionItem>
 
@@ -795,29 +919,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.9.0) | BOM (3.9.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:assurance** | **3.0.5** | **3.0.6**|
-| **com.adobe.marketing.mobile:campaign** | **3.0.2** | **3.0.3**|
-| **com.adobe.marketing.mobile:core** | **3.3.0** | **3.3.1**|
-| **com.adobe.marketing.mobile:edge** | **3.0.1** | **3.0.2**|
-| **com.adobe.marketing.mobile:target** | **3.0.1** | **3.0.2**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.3 | 3.1.3 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:messaging | 3.3.1 | 3.3.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:optimize | 3.3.0 | 3.3.0 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.9.0) | BOM (3.9.1) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:assurance**       | **3.0.5**   | **3.0.6**   |
+| **com.adobe.marketing.mobile:campaign**        | **3.0.2**   | **3.0.3**   |
+| **com.adobe.marketing.mobile:core**            | **3.3.0**   | **3.3.1**   |
+| **com.adobe.marketing.mobile:edge**            | **3.0.1**   | **3.0.2**   |
+| **com.adobe.marketing.mobile:target**          | **3.0.1**   | **3.0.2**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:audience            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.3       | 3.1.3       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:identity            | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:media               | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:messaging           | 3.3.1       | 3.3.1       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3       | 3.0.3       |
+| com.adobe.marketing.mobile:optimize            | 3.3.0       | 3.3.0       |
+| com.adobe.marketing.mobile:places              | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:signal              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1       | 3.0.1       |
 
 </AccordionItem>
 
@@ -865,29 +989,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.8.0) | BOM (3.9.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:optimize** | **3.2.4** | **3.3.0**|
-| com.adobe.marketing.mobile:analytics | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:assurance | 3.0.5 | 3.0.5 |
-| com.adobe.marketing.mobile:audience | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaign | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.3 | 3.1.3 |
-| com.adobe.marketing.mobile:core | 3.3.0 | 3.3.0 |
-| com.adobe.marketing.mobile:edge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:identity | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:media | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:messaging | 3.3.1 | 3.3.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:places | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:signal | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:target | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:userprofile | 3.0.1 | 3.0.1 |
+| Extension artifact                             | BOM (3.8.0) | BOM (3.9.0) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:optimize**        | **3.2.4**   | **3.3.0**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:assurance           | 3.0.5       | 3.0.5       |
+| com.adobe.marketing.mobile:audience            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaign            | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.3       | 3.1.3       |
+| com.adobe.marketing.mobile:core                | 3.3.0       | 3.3.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:identity            | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:media               | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:messaging           | 3.3.1       | 3.3.1       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.3       | 3.0.3       |
+| com.adobe.marketing.mobile:places              | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:signal              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:target              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.1       | 3.0.1       |
 
 </AccordionItem>
 
@@ -924,29 +1048,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.7.0) | BOM (3.8.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:analytics** | **3.0.1** | **3.0.2**|
-| **com.adobe.marketing.mobile:assurance** | **3.0.4** | **3.0.5**|
-| **com.adobe.marketing.mobile:audience** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:campaign** | **3.0.1** | **3.0.2**|
-| **com.adobe.marketing.mobile:campaignclassic** | **3.1.2** | **3.1.3**|
-| **com.adobe.marketing.mobile:core** | **3.2.0** | **3.3.0**|
-| **com.adobe.marketing.mobile:edge** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:edgebridge** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:edgeconsent** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:edgeidentity** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:edgemedia** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:identity** | **3.0.1** | **3.0.2**|
-| **com.adobe.marketing.mobile:lifecycle** | **3.0.1** | **3.0.2**|
-| **com.adobe.marketing.mobile:media** | **3.1.1** | **3.1.2**|
-| **com.adobe.marketing.mobile:messaging** | **3.3.0** | **3.3.1**|
-| **com.adobe.marketing.mobile:notificationbuilder** | **3.0.2** | **3.0.3**|
-| **com.adobe.marketing.mobile:optimize** | **3.2.3** | **3.2.4**|
-| **com.adobe.marketing.mobile:places** | **3.0.1** | **3.0.2**|
-| **com.adobe.marketing.mobile:signal** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:target** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:userprofile** | **3.0.0** | **3.0.1**|
+| Extension artifact                                 | BOM (3.7.0) | BOM (3.8.0) |
+| -------------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:analytics**           | **3.0.1**   | **3.0.2**   |
+| **com.adobe.marketing.mobile:assurance**           | **3.0.4**   | **3.0.5**   |
+| **com.adobe.marketing.mobile:audience**            | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:campaign**            | **3.0.1**   | **3.0.2**   |
+| **com.adobe.marketing.mobile:campaignclassic**     | **3.1.2**   | **3.1.3**   |
+| **com.adobe.marketing.mobile:core**                | **3.2.0**   | **3.3.0**   |
+| **com.adobe.marketing.mobile:edge**                | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:edgebridge**          | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:edgeconsent**         | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:edgeidentity**        | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:edgemedia**           | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:identity**            | **3.0.1**   | **3.0.2**   |
+| **com.adobe.marketing.mobile:lifecycle**           | **3.0.1**   | **3.0.2**   |
+| **com.adobe.marketing.mobile:media**               | **3.1.1**   | **3.1.2**   |
+| **com.adobe.marketing.mobile:messaging**           | **3.3.0**   | **3.3.1**   |
+| **com.adobe.marketing.mobile:notificationbuilder** | **3.0.2**   | **3.0.3**   |
+| **com.adobe.marketing.mobile:optimize**            | **3.2.3**   | **3.2.4**   |
+| **com.adobe.marketing.mobile:places**              | **3.0.1**   | **3.0.2**   |
+| **com.adobe.marketing.mobile:signal**              | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:target**              | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:userprofile**         | **3.0.0**   | **3.0.1**   |
 
 </AccordionItem>
 
@@ -1048,29 +1172,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.6.1) | BOM (3.7.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:messaging** | **3.2.1** | **3.3.0**|
-| **com.adobe.marketing.mobile:optimize** | **3.2.2** | **3.2.3**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:assurance | 3.0.4 | 3.0.4 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:core | 3.2.0 | 3.2.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.1 | 3.1.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:places | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.6.1) | BOM (3.7.0) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:messaging**       | **3.2.1**   | **3.3.0**   |
+| **com.adobe.marketing.mobile:optimize**        | **3.2.2**   | **3.2.3**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:assurance           | 3.0.4       | 3.0.4       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:core                | 3.2.0       | 3.2.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.1       | 3.1.1       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:places              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1095,29 +1219,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.6.0) | BOM (3.6.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:media** | **3.1.0** | **3.1.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:assurance | 3.0.4 | 3.0.4 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:core | 3.2.0 | 3.2.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:messaging | 3.2.1 | 3.2.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:optimize | 3.2.2 | 3.2.2 |
-| com.adobe.marketing.mobile:places | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.6.0) | BOM (3.6.1) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:media**           | **3.1.0**   | **3.1.1**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:assurance           | 3.0.4       | 3.0.4       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:core                | 3.2.0       | 3.2.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:messaging           | 3.2.1       | 3.2.1       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:optimize            | 3.2.2       | 3.2.2       |
+| com.adobe.marketing.mobile:places              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1167,29 +1291,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.5.1) | BOM (3.6.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:optimize** | **3.1.0** | **3.2.2**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:assurance | 3.0.4 | 3.0.4 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:core | 3.2.0 | 3.2.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.2.1 | 3.2.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:places | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.5.1) | BOM (3.6.0) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:optimize**        | **3.1.0**   | **3.2.2**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:assurance           | 3.0.4       | 3.0.4       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:core                | 3.2.0       | 3.2.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging           | 3.2.1       | 3.2.1       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:places              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1243,29 +1367,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.5.0) | BOM (3.5.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:assurance** | **3.0.3** | **3.0.4**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:core | 3.2.0 | 3.2.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.2.1 | 3.2.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:optimize | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:places | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.5.0) | BOM (3.5.1) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:assurance**       | **3.0.3**   | **3.0.4**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:core                | 3.2.0       | 3.2.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging           | 3.2.1       | 3.2.1       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:optimize            | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:places              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1279,28 +1403,28 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.9) | BOM (2.9.10) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:assurance** | **2.2.1** | **2.2.2**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:campaignclassic | 2.1.8 | 2.1.8 |
-| com.adobe.marketing.mobile:core | 2.6.4 | 2.6.4 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                         | BOM (2.9.9) | BOM (2.9.10) |
+| ------------------------------------------ | ----------- | ------------ |
+| **com.adobe.marketing.mobile:assurance**   | **2.2.1**   | **2.2.2**    |
+| com.adobe.marketing.mobile:analytics       | 2.0.3       | 2.0.3        |
+| com.adobe.marketing.mobile:audience        | 2.0.0       | 2.0.0        |
+| com.adobe.marketing.mobile:campaign        | 2.0.6       | 2.0.6        |
+| com.adobe.marketing.mobile:campaignclassic | 2.1.8       | 2.1.8        |
+| com.adobe.marketing.mobile:core            | 2.6.4       | 2.6.4        |
+| com.adobe.marketing.mobile:edge            | 2.4.0       | 2.4.0        |
+| com.adobe.marketing.mobile:edgebridge      | 2.1.0       | 2.1.0        |
+| com.adobe.marketing.mobile:edgeconsent     | 2.0.0       | 2.0.0        |
+| com.adobe.marketing.mobile:edgeidentity    | 2.0.1       | 2.0.1        |
+| com.adobe.marketing.mobile:edgemedia       | 2.0.0       | 2.0.0        |
+| com.adobe.marketing.mobile:identity        | 2.0.3       | 2.0.3        |
+| com.adobe.marketing.mobile:lifecycle       | 2.0.4       | 2.0.4        |
+| com.adobe.marketing.mobile:media           | 3.0.0       | 3.0.0        |
+| com.adobe.marketing.mobile:messaging       | 2.2.1       | 2.2.1        |
+| com.adobe.marketing.mobile:optimize        | 2.0.2       | 2.0.2        |
+| com.adobe.marketing.mobile:places          | 2.1.0       | 2.1.0        |
+| com.adobe.marketing.mobile:signal          | 2.0.1       | 2.0.1        |
+| com.adobe.marketing.mobile:target          | 2.0.3       | 2.0.3        |
+| com.adobe.marketing.mobile:userprofile     | 2.0.1       | 2.0.1        |
 
 </AccordionItem>
 
@@ -1334,29 +1458,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.4.0) | BOM (3.5.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:optimize** | **3.0.2** | **3.1.0**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:assurance | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:core | 3.2.0 | 3.2.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.2.1 | 3.2.1 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:places | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.4.0) | BOM (3.5.0) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:optimize**        | **3.0.2**   | **3.1.0**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:assurance           | 3.0.3       | 3.0.3       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:core                | 3.2.0       | 3.2.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging           | 3.2.1       | 3.2.1       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:places              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1376,29 +1500,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.3.2) | BOM (3.4.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:core** | **3.1.2** | **3.2.0**|
-| **com.adobe.marketing.mobile:messaging** | **3.2.0** | **3.2.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:assurance | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:optimize | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:places | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.3.2) | BOM (3.4.0) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:core**            | **3.1.2**   | **3.2.0**   |
+| **com.adobe.marketing.mobile:messaging**       | **3.2.0**   | **3.2.1**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:assurance           | 3.0.3       | 3.0.3       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:optimize            | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:places              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1462,29 +1586,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.3.1) | BOM (3.3.2) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:campaignclassic** | **3.1.1** | **3.1.2**|
-| **com.adobe.marketing.mobile:notificationbuilder** | **3.0.1** | **3.0.2**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:assurance | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:core | 3.1.2 | 3.1.2 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.2.0 | 3.2.0 |
-| com.adobe.marketing.mobile:optimize | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:places | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                                 | BOM (3.3.1) | BOM (3.3.2) |
+| -------------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:campaignclassic**     | **3.1.1**   | **3.1.2**   |
+| **com.adobe.marketing.mobile:notificationbuilder** | **3.0.1**   | **3.0.2**   |
+| com.adobe.marketing.mobile:analytics               | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:assurance               | 3.0.3       | 3.0.3       |
+| com.adobe.marketing.mobile:audience                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign                | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:core                    | 3.1.2       | 3.1.2       |
+| com.adobe.marketing.mobile:edge                    | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent             | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity                | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle               | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media                   | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging               | 3.2.0       | 3.2.0       |
+| com.adobe.marketing.mobile:optimize                | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:places                  | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:signal                  | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target                  | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile             | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1499,7 +1623,7 @@ Users can now configure:
 ### Android Notification Builder 3.0.2
 
 * Add `aep` prefix to notification builder string resources to prevent conflicts with resources defined by the app.
-*  Fix intent actions to allow tracker activities to correctly handle received intents.
+* Fix intent actions to allow tracker activities to correctly handle received intents.
 
 ## September 3, 2024
 
@@ -1515,29 +1639,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.3.0) | BOM (3.3.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:core** | **3.1.1** | **3.1.2**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:assurance | 3.0.3 | 3.0.3 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.1 | 3.1.1 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.2.0 | 3.2.0 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:optimize | 3.0.2 | 3.0.2 |
-| com.adobe.marketing.mobile:places | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.3.0) | BOM (3.3.1) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:core**            | **3.1.1**   | **3.1.2**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:assurance           | 3.0.3       | 3.0.3       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.1       | 3.1.1       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging           | 3.2.0       | 3.2.0       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:optimize            | 3.0.2       | 3.0.2       |
+| com.adobe.marketing.mobile:places              | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1563,29 +1687,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.2.2) | BOM (3.3.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:assurance** | **3.0.1** | **3.0.3**|
-| **com.adobe.marketing.mobile:campaign** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:campaignclassic** | **3.1.0** | **3.1.1**|
-| **com.adobe.marketing.mobile:messaging** | **3.1.0** | **3.2.0**|
-| **com.adobe.marketing.mobile:notificationbuilder** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:optimize** | **3.0.1** | **3.0.2**|
-| **com.adobe.marketing.mobile:places** | **3.0.0** | **3.0.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:core | 3.1.1 | 3.1.1 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                                 | BOM (3.2.2) | BOM (3.3.0) |
+| -------------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:assurance**           | **3.0.1**   | **3.0.3**   |
+| **com.adobe.marketing.mobile:campaign**            | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:campaignclassic**     | **3.1.0**   | **3.1.1**   |
+| **com.adobe.marketing.mobile:messaging**           | **3.1.0**   | **3.2.0**   |
+| **com.adobe.marketing.mobile:notificationbuilder** | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:optimize**            | **3.0.1**   | **3.0.2**   |
+| **com.adobe.marketing.mobile:places**              | **3.0.0**   | **3.0.1**   |
+| com.adobe.marketing.mobile:analytics               | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:audience                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:core                    | 3.1.1       | 3.1.1       |
+| com.adobe.marketing.mobile:edge                    | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent             | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity                | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle               | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media                   | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:signal                  | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target                  | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile             | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1654,29 +1778,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.2.1) | BOM (3.2.2) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:core** | **3.1.0** | **3.1.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:assurance | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:optimize | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:places | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.2.1) | BOM (3.2.2) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:core**            | **3.1.0**   | **3.1.1**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:assurance           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging           | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:optimize            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:places              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1704,29 +1828,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.2.0) | BOM (3.2.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:analytics** | **3.0.0** | **3.0.1**|
-| com.adobe.marketing.mobile:assurance | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:core | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:optimize | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:places | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.2.0) | BOM (3.2.1) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:analytics**       | **3.0.0**   | **3.0.1**   |
+| com.adobe.marketing.mobile:assurance           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:core                | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging           | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:optimize            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:places              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1752,29 +1876,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.1.0) | BOM (3.2.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:messaging** | **3.0.0** | **3.1.0**|
-| com.adobe.marketing.mobile:analytics | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:assurance | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaignclassic | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:core | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:notificationbuilder | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:optimize | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:places | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                             | BOM (3.1.0) | BOM (3.2.0) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:messaging**       | **3.0.0**   | **3.1.0**   |
+| com.adobe.marketing.mobile:analytics           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:assurance           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:audience            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaignclassic     | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:core                | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:edge                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle           | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media               | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:notificationbuilder | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:optimize            | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:places              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:signal              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile         | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1807,28 +1931,28 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.8) | BOM (2.9.9) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:campaignclassic** | **2.1.6** | **2.1.8**|
-| **com.adobe.marketing.mobile:core** | **2.6.3** | **2.6.4**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                             | BOM (2.9.8) | BOM (2.9.9) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:campaignclassic** | **2.1.6**   | **2.1.8**   |
+| **com.adobe.marketing.mobile:core**            | **2.6.3**   | **2.6.4**   |
+| com.adobe.marketing.mobile:analytics           | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance           | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:audience            | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign            | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:edge                | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity            | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle           | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging           | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:optimize            | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places              | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal              | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target              | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:userprofile         | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -1844,29 +1968,29 @@ Users can now configure:
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.0.3) | BOM (3.1.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:notificationbuilder** |  | **3.0.0** |
-| **com.adobe.marketing.mobile:campaignclassic** | **3.0.0** | **3.1.0**|
-| **com.adobe.marketing.mobile:core** | **3.0.2** | **3.1.0**|
-| com.adobe.marketing.mobile:analytics | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:assurance | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:optimize | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:places | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                                 | BOM (3.0.3) | BOM (3.1.0) |
+| -------------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:notificationbuilder** |             | **3.0.0**   |
+| **com.adobe.marketing.mobile:campaignclassic**     | **3.0.0**   | **3.1.0**   |
+| **com.adobe.marketing.mobile:core**                | **3.0.2**   | **3.1.0**   |
+| com.adobe.marketing.mobile:analytics               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:assurance               | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:audience                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign                | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edge                    | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge              | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent             | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity                | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle               | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media                   | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:optimize                | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:places                  | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:signal                  | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target                  | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile             | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -1973,28 +2097,28 @@ This is the initial release of AEP Notification Builder. Added support for out-o
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.0.2) | BOM (3.0.3) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:assurance** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:core** | **3.0.1** | **3.0.2**|
-| com.adobe.marketing.mobile:analytics | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaignclassic | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:optimize | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:places | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                         | BOM (3.0.2) | BOM (3.0.3) |
+| ------------------------------------------ | ----------- | ----------- |
+| **com.adobe.marketing.mobile:assurance**   | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:core**        | **3.0.1**   | **3.0.2**   |
+| com.adobe.marketing.mobile:analytics       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:audience        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaignclassic | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edge            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge      | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent     | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity    | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity        | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:lifecycle       | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:media           | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:optimize        | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:places          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:signal          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile     | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -2044,28 +2168,28 @@ This is the initial release of AEP Notification Builder. Added support for out-o
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.0.1) | BOM (3.0.2) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:core** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:identity** | **3.0.0** | **3.0.1**|
-| **com.adobe.marketing.mobile:lifecycle** | **3.0.0** | **3.0.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:assurance | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaignclassic | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:optimize | 3.0.1 | 3.0.1 |
-| com.adobe.marketing.mobile:places | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                         | BOM (3.0.1) | BOM (3.0.2) |
+| ------------------------------------------ | ----------- | ----------- |
+| **com.adobe.marketing.mobile:core**        | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:identity**    | **3.0.0**   | **3.0.1**   |
+| **com.adobe.marketing.mobile:lifecycle**   | **3.0.0**   | **3.0.1**   |
+| com.adobe.marketing.mobile:analytics       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:assurance       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:audience        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaignclassic | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edge            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge      | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent     | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity    | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:media           | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:optimize        | 3.0.1       | 3.0.1       |
+| com.adobe.marketing.mobile:places          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:signal          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile     | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -2112,28 +2236,28 @@ This is the initial release of AEP Notification Builder. Added support for out-o
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (3.0.0) | BOM (3.0.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:optimize** | **3.0.0** | **3.0.1**|
-| com.adobe.marketing.mobile:analytics | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:assurance | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:audience | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaign | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:campaignclassic | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:core | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgebridge | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeconsent | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:edgemedia | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:identity | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:lifecycle | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:media | 3.1.0 | 3.1.0 |
-| com.adobe.marketing.mobile:messaging | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:places | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:signal | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:target | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:userprofile | 3.0.0 | 3.0.0 |
+| Extension artifact                         | BOM (3.0.0) | BOM (3.0.1) |
+| ------------------------------------------ | ----------- | ----------- |
+| **com.adobe.marketing.mobile:optimize**    | **3.0.0**   | **3.0.1**   |
+| com.adobe.marketing.mobile:analytics       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:assurance       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:audience        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaign        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:campaignclassic | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:core            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edge            | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgebridge      | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeconsent     | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgeidentity    | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:edgemedia       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:identity        | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:lifecycle       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:media           | 3.1.0       | 3.1.0       |
+| com.adobe.marketing.mobile:messaging       | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:places          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:signal          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:target          | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:userprofile     | 3.0.0       | 3.0.0       |
 
 </AccordionItem>
 
@@ -2202,28 +2326,28 @@ This is the initial release of AEP Notification Builder. Added support for out-o
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.7) | BOM (2.9.8) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:core** | **2.6.2** | **2.6.3**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:campaignclassic | 2.1.6 | 2.1.6 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                         | BOM (2.9.7) | BOM (2.9.8) |
+| ------------------------------------------ | ----------- | ----------- |
+| **com.adobe.marketing.mobile:core**        | **2.6.2**   | **2.6.3**   |
+| com.adobe.marketing.mobile:analytics       | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance       | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:audience        | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign        | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:campaignclassic | 2.1.6       | 2.1.6       |
+| com.adobe.marketing.mobile:edge            | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge      | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent     | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity    | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia       | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity        | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle       | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging       | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:optimize        | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal          | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target          | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:userprofile     | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -2256,28 +2380,28 @@ This is the initial release of AEP Notification Builder. Added support for out-o
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.6) | BOM (2.9.7) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:campaignclassic** | **2.1.5** | **2.1.6**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:core | 2.6.2 | 2.6.2 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                             | BOM (2.9.6) | BOM (2.9.7) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:campaignclassic** | **2.1.5**   | **2.1.6**   |
+| com.adobe.marketing.mobile:analytics           | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance           | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:audience            | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign            | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:core                | 2.6.2       | 2.6.2       |
+| com.adobe.marketing.mobile:edge                | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity            | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle           | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging           | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:optimize            | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places              | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal              | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target              | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:userprofile         | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -2620,28 +2744,28 @@ For help on moving to these versions, and information on deprecated APIs please 
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.6) | BOM (3.0.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:analytics** | **2.0.3** | **3.0.0**|
-| **com.adobe.marketing.mobile:assurance** | **2.2.1** | **3.0.0**|
-| **com.adobe.marketing.mobile:audience** | **2.0.0** | **3.0.0**|
-| **com.adobe.marketing.mobile:campaign** | **2.0.6** | **3.0.0**|
-| **com.adobe.marketing.mobile:campaignclassic** | **2.1.5** | **3.0.0**|
-| **com.adobe.marketing.mobile:core** | **2.6.2** | **3.0.0**|
-| **com.adobe.marketing.mobile:edge** | **2.4.0** | **3.0.0**|
-| **com.adobe.marketing.mobile:edgebridge** | **2.1.0** | **3.0.0**|
-| **com.adobe.marketing.mobile:edgeconsent** | **2.0.0** | **3.0.0**|
-| **com.adobe.marketing.mobile:edgeidentity** | **2.0.1** | **3.0.0**|
-| **com.adobe.marketing.mobile:edgemedia** | **2.0.0** | **3.0.0**|
-| **com.adobe.marketing.mobile:identity** | **2.0.3** | **3.0.0**|
-| **com.adobe.marketing.mobile:lifecycle** | **2.0.4** | **3.0.0**|
-| **com.adobe.marketing.mobile:media** | **3.0.0** | **3.1.0**|
-| **com.adobe.marketing.mobile:messaging** | **2.2.1** | **3.0.0**|
-| **com.adobe.marketing.mobile:optimize** | **2.0.2** | **3.0.0**|
-| **com.adobe.marketing.mobile:places** | **2.1.0** | **3.0.0**|
-| **com.adobe.marketing.mobile:signal** | **2.0.1** | **3.0.0**|
-| **com.adobe.marketing.mobile:target** | **2.0.3** | **3.0.0**|
-| **com.adobe.marketing.mobile:userprofile** | **2.0.1** | **3.0.0**|
+| Extension artifact                             | BOM (2.9.6) | BOM (3.0.0) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:analytics**       | **2.0.3**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:assurance**       | **2.2.1**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:audience**        | **2.0.0**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:campaign**        | **2.0.6**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:campaignclassic** | **2.1.5**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:core**            | **2.6.2**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:edge**            | **2.4.0**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:edgebridge**      | **2.1.0**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:edgeconsent**     | **2.0.0**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:edgeidentity**    | **2.0.1**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:edgemedia**       | **2.0.0**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:identity**        | **2.0.3**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:lifecycle**       | **2.0.4**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:media**           | **3.0.0**   | **3.1.0**   |
+| **com.adobe.marketing.mobile:messaging**       | **2.2.1**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:optimize**        | **2.0.2**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:places**          | **2.1.0**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:signal**          | **2.0.1**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:target**          | **2.0.3**   | **3.0.0**   |
+| **com.adobe.marketing.mobile:userprofile**     | **2.0.1**   | **3.0.0**   |
 
 </AccordionItem>
 
@@ -3013,28 +3137,28 @@ Major version update for [Identity for Edge Network](../../edge/identity-for-edg
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.5) | BOM (2.9.6) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:campaignclassic** | **2.1.4** | **2.1.5**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:core | 2.6.2 | 2.6.2 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                             | BOM (2.9.5) | BOM (2.9.6) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:campaignclassic** | **2.1.4**   | **2.1.5**   |
+| com.adobe.marketing.mobile:analytics           | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance           | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:audience            | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign            | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:core                | 2.6.2       | 2.6.2       |
+| com.adobe.marketing.mobile:edge                | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity            | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle           | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging           | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:optimize            | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places              | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal              | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target              | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:userprofile         | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -3109,28 +3233,28 @@ Major version update for [Identity for Edge Network](../../edge/identity-for-edg
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.4) | BOM (2.9.5) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:messaging** | **2.2.0** | **2.2.1**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:campaignclassic | 2.1.4 | 2.1.4 |
-| com.adobe.marketing.mobile:core | 2.6.2 | 2.6.2 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                         | BOM (2.9.4) | BOM (2.9.5) |
+| ------------------------------------------ | ----------- | ----------- |
+| **com.adobe.marketing.mobile:messaging**   | **2.2.0**   | **2.2.1**   |
+| com.adobe.marketing.mobile:analytics       | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance       | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:audience        | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign        | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:campaignclassic | 2.1.4       | 2.1.4       |
+| com.adobe.marketing.mobile:core            | 2.6.2       | 2.6.2       |
+| com.adobe.marketing.mobile:edge            | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge      | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent     | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity    | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia       | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity        | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle       | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:optimize        | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal          | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target          | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:userprofile     | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -3152,28 +3276,28 @@ Major version update for [Identity for Edge Network](../../edge/identity-for-edg
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.3) | BOM (2.9.4) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:campaignclassic** | **2.1.3** | **2.1.4**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:core | 2.6.2 | 2.6.2 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.0 | 2.2.0 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                             | BOM (2.9.3) | BOM (2.9.4) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:campaignclassic** | **2.1.3**   | **2.1.4**   |
+| com.adobe.marketing.mobile:analytics           | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance           | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:audience            | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign            | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:core                | 2.6.2       | 2.6.2       |
+| com.adobe.marketing.mobile:edge                | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity            | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle           | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging           | 2.2.0       | 2.2.0       |
+| com.adobe.marketing.mobile:optimize            | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places              | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal              | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target              | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:userprofile         | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -3230,28 +3354,28 @@ Major version update for [Identity for Edge Network](../../edge/identity-for-edg
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.2) | BOM (2.9.3) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:campaignclassic** | **2.1.2** | **2.1.3**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.1 | 2.2.1 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:core | 2.6.2 | 2.6.2 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.0 | 2.2.0 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                             | BOM (2.9.2) | BOM (2.9.3) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:campaignclassic** | **2.1.2**   | **2.1.3**   |
+| com.adobe.marketing.mobile:analytics           | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance           | 2.2.1       | 2.2.1       |
+| com.adobe.marketing.mobile:audience            | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign            | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:core                | 2.6.2       | 2.6.2       |
+| com.adobe.marketing.mobile:edge                | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity            | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle           | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging           | 2.2.0       | 2.2.0       |
+| com.adobe.marketing.mobile:optimize            | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places              | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal              | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target              | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:userprofile         | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -3273,28 +3397,28 @@ Major version update for [Identity for Edge Network](../../edge/identity-for-edg
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.1) | BOM (2.9.2) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:assurance** | **2.2.0** | **2.2.1**|
-| **com.adobe.marketing.mobile:campaignclassic** | **2.1.1** | **2.1.2**|
-| **com.adobe.marketing.mobile:target** | **2.0.2** | **2.0.3**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:core | 2.6.2 | 2.6.2 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.0 | 2.2.0 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                             | BOM (2.9.1) | BOM (2.9.2) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:assurance**       | **2.2.0**   | **2.2.1**   |
+| **com.adobe.marketing.mobile:campaignclassic** | **2.1.1**   | **2.1.2**   |
+| **com.adobe.marketing.mobile:target**          | **2.0.2**   | **2.0.3**   |
+| com.adobe.marketing.mobile:analytics           | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:audience            | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign            | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:core                | 2.6.2       | 2.6.2       |
+| com.adobe.marketing.mobile:edge                | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity            | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle           | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging           | 2.2.0       | 2.2.0       |
+| com.adobe.marketing.mobile:optimize            | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places              | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal              | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:userprofile         | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -3322,28 +3446,28 @@ Major version update for [Identity for Edge Network](../../edge/identity-for-edg
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.9.0) | BOM (2.9.1) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:core** | **2.6.1** | **2.6.2**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.0 | 2.2.0 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:campaignclassic | 2.1.1 | 2.1.1 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.0 | 2.2.0 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                         | BOM (2.9.0) | BOM (2.9.1) |
+| ------------------------------------------ | ----------- | ----------- |
+| **com.adobe.marketing.mobile:core**        | **2.6.1**   | **2.6.2**   |
+| com.adobe.marketing.mobile:analytics       | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance       | 2.2.0       | 2.2.0       |
+| com.adobe.marketing.mobile:audience        | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign        | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:campaignclassic | 2.1.1       | 2.1.1       |
+| com.adobe.marketing.mobile:edge            | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge      | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent     | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity    | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia       | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity        | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle       | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media           | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging       | 2.2.0       | 2.2.0       |
+| com.adobe.marketing.mobile:optimize        | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal          | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target          | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:userprofile     | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
@@ -3371,8 +3495,8 @@ The response tokens should be parsed as `Map<String: Object>`. For details, see 
 ### React Native Edge library 5.1.0
 
 * Added support to customize datastream configurations on a per-event basis using the sendEvent API.
-This release updates dependencies on native Edge Network SDK to minimum v4.3.0 (iOS) and v2.4.0 (Android).
-Refer to API doc [here](https://github.com/adobe/aepsdk-react-native/tree/main/packages/edge#sendevent).
+  This release updates dependencies on native Edge Network SDK to minimum v4.3.0 (iOS) and v2.4.0 (Android).
+  Refer to API doc [here](https://github.com/adobe/aepsdk-react-native/tree/main/packages/edge#sendevent).
 
 ## January 23, 2024
 
@@ -3384,28 +3508,28 @@ Refer to API doc [here](https://github.com/adobe/aepsdk-react-native/tree/main/p
 
 <AccordionItem header='Expand'>
 
-| Extension artifact | BOM (2.8.1) | BOM (2.9.0) |
-|-----|-----|-----|
-| **com.adobe.marketing.mobile:campaignclassic** | **2.0.1** | **2.1.1**|
-| com.adobe.marketing.mobile:analytics | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:assurance | 2.2.0 | 2.2.0 |
-| com.adobe.marketing.mobile:audience | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:campaign | 2.0.6 | 2.0.6 |
-| com.adobe.marketing.mobile:core | 2.6.1 | 2.6.1 |
-| com.adobe.marketing.mobile:edge | 2.4.0 | 2.4.0 |
-| com.adobe.marketing.mobile:edgebridge | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:edgeconsent | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:edgeidentity | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:edgemedia | 2.0.0 | 2.0.0 |
-| com.adobe.marketing.mobile:identity | 2.0.3 | 2.0.3 |
-| com.adobe.marketing.mobile:lifecycle | 2.0.4 | 2.0.4 |
-| com.adobe.marketing.mobile:media | 3.0.0 | 3.0.0 |
-| com.adobe.marketing.mobile:messaging | 2.2.0 | 2.2.0 |
-| com.adobe.marketing.mobile:optimize | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:places | 2.1.0 | 2.1.0 |
-| com.adobe.marketing.mobile:signal | 2.0.1 | 2.0.1 |
-| com.adobe.marketing.mobile:target | 2.0.2 | 2.0.2 |
-| com.adobe.marketing.mobile:userprofile | 2.0.1 | 2.0.1 |
+| Extension artifact                             | BOM (2.8.1) | BOM (2.9.0) |
+| ---------------------------------------------- | ----------- | ----------- |
+| **com.adobe.marketing.mobile:campaignclassic** | **2.0.1**   | **2.1.1**   |
+| com.adobe.marketing.mobile:analytics           | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:assurance           | 2.2.0       | 2.2.0       |
+| com.adobe.marketing.mobile:audience            | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:campaign            | 2.0.6       | 2.0.6       |
+| com.adobe.marketing.mobile:core                | 2.6.1       | 2.6.1       |
+| com.adobe.marketing.mobile:edge                | 2.4.0       | 2.4.0       |
+| com.adobe.marketing.mobile:edgebridge          | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:edgeconsent         | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:edgeidentity        | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:edgemedia           | 2.0.0       | 2.0.0       |
+| com.adobe.marketing.mobile:identity            | 2.0.3       | 2.0.3       |
+| com.adobe.marketing.mobile:lifecycle           | 2.0.4       | 2.0.4       |
+| com.adobe.marketing.mobile:media               | 3.0.0       | 3.0.0       |
+| com.adobe.marketing.mobile:messaging           | 2.2.0       | 2.2.0       |
+| com.adobe.marketing.mobile:optimize            | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:places              | 2.1.0       | 2.1.0       |
+| com.adobe.marketing.mobile:signal              | 2.0.1       | 2.0.1       |
+| com.adobe.marketing.mobile:target              | 2.0.2       | 2.0.2       |
+| com.adobe.marketing.mobile:userprofile         | 2.0.1       | 2.0.1       |
 
 </AccordionItem>
 
