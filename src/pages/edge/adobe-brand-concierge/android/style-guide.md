@@ -136,6 +136,7 @@ Colors are specified as hex strings:
 ```
 
 Supported formats:
+
 * `#RRGGBB` - 6 digit hex
 * `#RRGGBBAA` - 8 digit hex with alpha
 
@@ -157,6 +158,7 @@ Padding follows CSS shorthand syntax:
 ```
 
 Formats:
+
 * `8px` - All sides
 * `8px 16px` - Vertical, horizontal
 * `8px 16px 4px` - Top, horizontal, bottom
@@ -481,7 +483,7 @@ List-based configuration for examples and feedback options.
 
 ### Feedback Options
 
-> It is recommended to have no more than five options available for feedback. 
+> It is recommended to have no more than five options available for feedback.
 >
 > Always test your values on device to ensure the UI looks as desired.
 
@@ -1033,17 +1035,19 @@ This section documents which properties are fully implemented, partially impleme
 ### Implementation Summary
 
 **Overall Implementation Status:**
-- **Colors**: ~70% implemented (most core colors used, hover states not applicable)
-- **Typography**: 60% implemented (`fontFamily` not yet supported)
-- **Layout**: ~15% implemented (only outline widths and font sizes currently used)
-- **Behavior**: ~10% implemented (only `enableVoiceInput` functional)
-- **Text/Copy**: ~50% implemented (main strings used, accessibility labels not yet implemented)
+
+* **Colors**: ~70% implemented (most core colors used, hover states not applicable)
+* **Typography**: 60% implemented (`fontFamily` not yet supported)
+* **Layout**: ~15% implemented (only outline widths and font sizes currently used)
+* **Behavior**: ~10% implemented (only `enableVoiceInput` functional)
+* **Text/Copy**: ~50% implemented (main strings used, accessibility labels not yet implemented)
 
 **Key Differences from Web/iOS:**
-- Hover states (`--button-primary-hover`, `--feedback-icon-btn-hover-background`) are parsed but not applicable on Android
-- Box shadows are parsed but not currently rendered
-- Most layout dimensions (padding, margins, border radius) are hardcoded rather than theme-driven
-- Accessibility labels (aria) are parsed but not yet connected to content descriptions
+
+* Hover states (`--button-primary-hover`, `--feedback-icon-btn-hover-background`) are parsed but not applicable on Android
+* Box shadows are parsed but not currently rendered
+* Most layout dimensions (padding, margins, border radius) are hardcoded rather than theme-driven
+* Accessibility labels (aria) are parsed but not yet connected to content descriptions
 
 ### Metadata
 
@@ -1149,7 +1153,13 @@ This section documents which properties are fully implemented, partially impleme
 ### Theme Tokens - Colors
 
 **Note**: The following base colors are **not configurable via JSON themes**. They are hardcoded in `LightConciergeColors` / `DarkConciergeColors` and serve as fallback colors throughout the UI:
-- `secondary`, `onSurfaceVariant`, `container`, `outline`, `error`, `onError`
+
+* `secondary`
+* `onSurfaceVariant` 
+* `container`
+* `outline`
+* `error`
+* `onError`
 
 These colors are used internally by composables but cannot be customized in theme JSON files. See "Fallback Colors" section at the end.
 
@@ -1315,71 +1325,75 @@ When creating themes for the Android SDK, focus on these **actively used** prope
 
 **Essential Colors (Highest Impact):**
 
-- `--color-primary` - Primary brand color (used for buttons, feedback checkbox checked state, mic button icon, thinking animation)
-- `--color-text` - Primary text color for main background (header, welcome card when theme loaded, prompt suggestions). 
-- `--main-container-background` - Main screen background color (welcome card, chat area, feedback dialog)
-- `--main-container-bottom-background` - Bottom container background (input area)
-- `--message-user-background` / `--message-user-text` - User message styling
-- `--message-concierge-background` / `--message-concierge-text` - AI message styling, feedback dialog styling, feedback button icons, expanded citation text, chat footer (Sources label and icon)
-- `--message-concierge-link-color` - Links in AI content and expanded citation URLs
-- `--button-primary-background` / `--button-primary-text` - Primary buttons
-- `--button-secondary-border` / `--button-secondary-text` - Secondary buttons
-- `--input-background` / `--input-text-color` - Input field colors
-- `--input-outline-color` / `--input-focus-outline-color` - Input borders
-- `--input-send-icon-color` / `--input-mic-icon-color` - Send and mic button icon colors
-- `--input-send-arrow-icon-color` / `--input-send-arrow-background-color` - Arrow send button colors (when `sendButtonStyle` is `"arrow"`)
-- `--input-mic-recording-icon-color` - Waveform animation color during voice recording
-- `--submit-button-fill-color` / `--color-button-submit` - Submit button
-- `--disclaimer-color` / `--disclaimer-font-size` / `--disclaimer-font-weight` - Disclaimer text at bottom
-- `--citations-background-color` / `--citations-text-color` - Citation pill (badge).
-- `--feedback-icon-btn-background` - Feedback button styling
+* `--color-primary` - Primary brand color (used for buttons, feedback checkbox checked state, mic button icon, thinking animation)
+* `--color-text` - Primary text color for main background (header, welcome card when theme loaded, prompt suggestions). 
+* `--main-container-background` - Main screen background color (welcome card, chat area, feedback dialog)
+* `--main-container-bottom-background` - Bottom container background (input area)
+* `--message-user-background` / `--message-user-text` - User message styling
+* `--message-concierge-background` / `--message-concierge-text` - AI message styling, feedback dialog styling, feedback button icons, expanded citation text, chat footer (Sources label and icon)
+* `--message-concierge-link-color` - Links in AI content and expanded citation URLs
+* `--button-primary-background` / `--button-primary-text` - Primary buttons
+* `--button-secondary-border` / `--button-secondary-text` - Secondary buttons
+* `--input-background` / `--input-text-color` - Input field colors
+* `--input-outline-color` / `--input-focus-outline-color` - Input borders
+* `--input-send-icon-color` / `--input-mic-icon-color` - Send and mic button icon colors
+* `--input-send-arrow-icon-color` / `--input-send-arrow-background-color` - Arrow send button colors (when `sendButtonStyle` is `"arrow"`)
+* `--input-mic-recording-icon-color` - Waveform animation color during voice recording
+* `--submit-button-fill-color` / `--color-button-submit` - Submit button
+* `--disclaimer-color` / `--disclaimer-font-size` / `--disclaimer-font-weight` - Disclaimer text at bottom
+* `--citations-background-color` / `--citations-text-color` - Citation pill (badge).
+* `--feedback-icon-btn-background` - Feedback button styling
 
 **Essential Text/Copy:**
-- `text["header.title"]` - Header title
-- `text["header.subtitle"]` - Header subtitle
-- `text["welcome.heading"]` - Welcome screen title
-- `text["welcome.subheading"]` - Welcome screen description
-- `text["input.placeholder"]` - Input field hint
-- `text["loading.message"]` - Loading indicator text
-- All `text["feedback.dialog.*"]` - Feedback dialog strings
+
+* `text["header.title"]` - Header title
+* `text["header.subtitle"]` - Header subtitle
+* `text["welcome.heading"]` - Welcome screen title
+* `text["welcome.subheading"]` - Welcome screen description
+* `text["input.placeholder"]` - Input field hint
+* `text["loading.message"]` - Loading indicator text
+* All `text["feedback.dialog.*"]` - Feedback dialog strings
 
 **Essential Behavior:**
-- `behavior.input.enableVoiceInput` - Show/hide microphone button
-- `behavior.input.sendButtonStyle` - `"default"` (paper airplane) or `"arrow"` (filled circle with upward arrow)
-- `behavior.productCard.cardStyle` - Use `"productDetail"` for extended product cards (image, badge, name, subtitle, price)
-- `behavior.multimodalCarousel.carouselStyle` - Use `"paged"` for prev/next/dots or `"scroll"` for continuous scroll
-- `behavior.welcomeCard.closeButtonAlignment` - Close button position (`"start"` or `"end"`)
-- `behavior.welcomeCard.promptFullWidth` - Full-width cards vs compact pill chips
-- `behavior.welcomeCard.promptMaxLines` - Max prompt text lines (set `1` for uniform pills)
-- `behavior.welcomeCard.contentAlignment` - Welcome card vertical position (`"top"` or `"center"`)
+
+* `behavior.input.enableVoiceInput` - Show/hide microphone button
+* `behavior.input.sendButtonStyle` - `"default"` (paper airplane) or `"arrow"` (filled circle with upward arrow)
+* `behavior.productCard.cardStyle` - Use `"productDetail"` for extended product cards (image, badge, name, subtitle, price)
+* `behavior.multimodalCarousel.carouselStyle` - Use `"paged"` for prev/next/dots or `"scroll"` for continuous scroll
+* `behavior.welcomeCard.closeButtonAlignment` - Close button position (`"start"` or `"end"`)
+* `behavior.welcomeCard.promptFullWidth` - Full-width cards vs compact pill chips
+* `behavior.welcomeCard.promptMaxLines` - Max prompt text lines (set `1` for uniform pills)
+* `behavior.welcomeCard.contentAlignment` - Welcome card vertical position (`"top"` or `"center"`)
 
 **Essential Layout:**
-- `--input-outline-width` / `--input-focus-outline-width` - Input border thickness
-- `--input-border-radius-mobile` - Input field corner radius
-- `--input-font-size` - Input text size
-- `--input-send-icon-color` / `--input-mic-icon-color` - Input button icon colors
-- `--disclaimer-font-size` - Disclaimer text size
-- `--citations-desktop-button-font-size` - Citation text size
-- `--line-height-body` - Text line spacing
+
+* `--input-outline-width` / `--input-focus-outline-width` - Input border thickness
+* `--input-border-radius-mobile` - Input field corner radius
+* `--input-font-size` - Input text size
+* `--input-send-icon-color` / `--input-mic-icon-color` - Input button icon colors
+* `--disclaimer-font-size` - Disclaimer text size
+* `--citations-desktop-button-font-size` - Citation text size
+* `--line-height-body` - Text line spacing
 
 **Extended Product Cards** (when `behavior.productCard.cardStyle` is `"productDetail"`):
-- `--product-card-width` / `--product-card-height` - Card dimensions
-- `--product-card-title-*` / `--product-card-subtitle-*` / `--product-card-price-*` - Text styling
-- `--product-card-badge-*` - Badge styling
-- `--product-card-background-color` / `--product-card-outline-color` - Card appearance
-- `--product-card-was-price-*` - Strikethrough price styling
+
+* `--product-card-width` / `--product-card-height` - Card dimensions
+* `--product-card-title-*` / `--product-card-subtitle-*` / `--product-card-price-*` - Text styling
+* `--product-card-badge-*` - Badge styling
+* `--product-card-background-color` / `--product-card-outline-color` - Card appearance
+* `--product-card-was-price-*` - Strikethrough price styling
 
 ### What Can Be Skipped
 
 These properties are parsed but **not currently used** and can be omitted without affecting the UI:
 
-- Hover states (all `*-hover` properties)
-- Box shadows (all `*-box-shadow` properties)
-- Most layout dimensions (padding, margins, border radius) - currently hardcoded
-- Disabled button states
-- Accessibility labels (not yet connected to Android content descriptions)
-- Welcome screen ordering (`--welcome-input-order`, `--welcome-cards-order`)
-- Font family (`--font-family` - not yet implemented)
+* Hover states (all `*-hover` properties)
+* Box shadows (all `*-box-shadow` properties)
+* Most layout dimensions (padding, margins, border radius) - currently hardcoded
+* Disabled button states
+* Accessibility labels (not yet connected to Android content descriptions)
+* Welcome screen ordering (`--welcome-input-order`, `--welcome-cards-order`)
+* Font family (`--font-family` - not yet implemented)
 
 ### Testing Your Theme
 

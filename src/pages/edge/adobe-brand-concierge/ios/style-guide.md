@@ -88,6 +88,7 @@ Colors are specified as hex strings:
 ```
 
 Supported formats:
+
 * `#RRGGBB` - 6 digit hex
 * `#RRGGBBAA` - 8 digit hex with alpha
 
@@ -113,6 +114,7 @@ Padding follows CSS shorthand syntax:
 ```
 
 Formats:
+
 * `8px` - All sides
 * `8px 16px` - Vertical, horizontal
 * `8px 16px 4px` - Top, horizontal, bottom
@@ -425,7 +427,7 @@ List-based configuration for examples and feedback options.
 
 ### Feedback Options
 
-> It is recommended to have no more than five options available for feedback. 
+> It is recommended to have no more than five options available for feedback.
 >
 > Always test your values on device to ensure the UI looks as desired.
 
@@ -701,6 +703,7 @@ Visual styling using CSS-like variable names. All properties in the `theme` obje
 | `--cta-button-icon-size` | `layout.ctaButtonIconSize` | `CGFloat` | `16` | External link icon width/height |
 
 ### Layout - Welcome Screen Order
+
 ### Layout - Header
 
 | CSS Variable | Swift Property | Type | Default | Description |
