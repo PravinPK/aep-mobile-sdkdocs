@@ -88,8 +88,8 @@ Colors are specified as hex strings:
 ```
 
 Supported formats:
-- `#RRGGBB` - 6 digit hex
-- `#RRGGBBAA` - 8 digit hex with alpha
+* `#RRGGBB` - 6 digit hex
+* `#RRGGBBAA` - 8 digit hex with alpha
 
 ### Dimensions
 
@@ -113,10 +113,10 @@ Padding follows CSS shorthand syntax:
 ```
 
 Formats:
-- `8px` - All sides
-- `8px 16px` - Vertical, horizontal
-- `8px 16px 4px` - Top, horizontal, bottom
-- `8px 16px 4px 2px` - Top, right, bottom, left
+* `8px` - All sides
+* `8px 16px` - Vertical, horizontal
+* `8px 16px 4px` - Top, horizontal, bottom
+* `8px 16px 4px 2px` - Top, right, bottom, left
 
 ### Shadows
 

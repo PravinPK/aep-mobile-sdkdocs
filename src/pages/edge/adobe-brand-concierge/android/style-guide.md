@@ -101,8 +101,8 @@ class MainActivity : AppCompatActivity() {
 
 ### Default theming
 
-- **When no theme is loaded** (`theme = null`): The SDK uses built-in light or dark colors (`LightConciergeColors` / `DarkConciergeColors`) based on the device’s light/dark setting.
-- **When a theme is loaded** (`theme = <ConciergeThemeData>`): The theme JSON always takes precedence.
+* **When no theme is loaded** (`theme = null`): The SDK uses built-in light or dark colors (`LightConciergeColors` / `DarkConciergeColors`) based on the device’s light/dark setting.
+* **When a theme is loaded** (`theme = <ConciergeThemeData>`): The theme JSON always takes precedence.
 
 ---
 
@@ -136,8 +136,8 @@ Colors are specified as hex strings:
 ```
 
 Supported formats:
-- `#RRGGBB` - 6 digit hex
-- `#RRGGBBAA` - 8 digit hex with alpha
+* `#RRGGBB` - 6 digit hex
+* `#RRGGBBAA` - 8 digit hex with alpha
 
 ### Dimensions
 
@@ -157,10 +157,10 @@ Padding follows CSS shorthand syntax:
 ```
 
 Formats:
-- `8px` - All sides
-- `8px 16px` - Vertical, horizontal
-- `8px 16px 4px` - Top, horizontal, bottom
-- `8px 16px 4px 2px` - Top, right, bottom, left
+* `8px` - All sides
+* `8px 16px` - Vertical, horizontal
+* `8px 16px 4px` - Top, horizontal, bottom
+* `8px 16px 4px 2px` - Top, right, bottom, left
 
 ### Shadows
 
