@@ -14,7 +14,7 @@ keywords:
 
 # AepUIStyle
 
-Class that encapsulates the style configuration for all supported types of AEP UI content card components. This class is used when displaying content cards within the inbox to apply consistent styling across different card types.
+Class that encapsulates the style configuration for all supported types of Experience Platform UI content content card components. This class is used when displaying content cards within the inbox to apply consistent styling across different card types.
 
 ## Public Properties
 

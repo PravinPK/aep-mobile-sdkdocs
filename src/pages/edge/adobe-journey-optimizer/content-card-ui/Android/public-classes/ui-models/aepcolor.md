@@ -15,7 +15,7 @@ keywords:
 
 # AepColor
 
-Data class representing colors for both light and dark themes in AEP UI components.
+Data class representing colors for both light and dark themes in Experience Platform UI components.
 
 ## Public Properties
 

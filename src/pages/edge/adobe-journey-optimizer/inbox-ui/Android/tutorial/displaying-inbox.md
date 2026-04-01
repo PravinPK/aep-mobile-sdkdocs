@@ -26,7 +26,7 @@ The Inbox is a pre-built UI component that displays content cards in a unified c
 
 ## Fetch Inbox settings and Content Cards
 
-To fetch the inbox settings and content cards for the surfaces configured in [Adobe Journey Optimizer](https://business.adobe.com/products/journey-optimizer/adobe-journey-optimizer.html) campaigns, call the [updatePropositionsForSurfaces](https://developer.adobe.com/client-sdks/edge/adobe-journey-optimizer/code-based/api-reference/#updatepropositionsforsurfaces) API. It's recommended to batch requests for multiple surfaces in a single API call when possible. The returned inbox settings and content cards are cached in-memory by the Messaging extension and persist through the application's lifecycle.
+To fetch the inbox settings and content cards for the surfaces configured in [Adobe Journey Optimizer](https://business.adobe.com/products/journey-optimizer/adobe-journey-optimizer.html) campaigns, call the [updatePropositionsForSurfaces](https://developer.adobe.com/client-sdks/edge/adobe-journey-optimizer/code-based/api-reference/#updatepropositionsforsurfaces) API. You should batch requests for multiple surfaces in a single API call when possible. The returned inbox settings and content cards are cached in-memory by the Messaging extension and persist through the application's lifecycle.
 
 <CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
 

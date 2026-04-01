@@ -21,7 +21,7 @@ Messaging extension implementation of [AepUIContentProvider](./aepuicontentprovi
 
 ### getContentCardUIFlow
 
-Retrieves a cold Flow of Result containing AepUI instances for the given surface. Content is fetched lazily when the flow is collected. The flow continues to emit updates when [refreshContent](#refreshcontent) is called or when card UI events are processed via [ContentCardEventObserver](../observers/contentcardeventobserver.md).
+Retrieves a Flow of Result containing AepUI instances for the given surface, which only emits values when there is an active collector. Content is fetched lazily when the flow is collected. The flow continues to emit updates when [refreshContent](#refreshcontent) is called or when card UI events are processed via [ContentCardEventObserver](../observers/contentcardeventobserver.md).
 
 #### Returns
 
@@ -70,7 +70,7 @@ override suspend fun refreshContent()
 
 ### getUIContent
 
-Retrieves a cold Flow of Result containing [AepUITemplate](../ui-models/aepuitemplate.md) instances for the given surface. Content is fetched lazily when the flow is collected. The flow continues to emit updates when [refreshContent](#refreshcontent) is called.
+Retrieves a Flow of Result containing [AepUITemplate](../ui-models/aepuitemplate.md) instances for the given surface, which only emit values when there is an active collector.. Content is fetched lazily when the flow is collected. The flow continues to emit updates when [refreshContent](#refreshcontent) is called.
 
 Prefer [getContentCardUIFlow](#getcontentcarduiflow) when rendering with Compose UI components, as it emits `AepUI` instances ready for use with card composables.
 
