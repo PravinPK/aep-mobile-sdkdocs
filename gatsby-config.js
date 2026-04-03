@@ -739,7 +739,31 @@ module.exports = {
                                                     }
                                                 ]
                                             }
-                                        ]                                        
+                                        ]
+                                    },
+                                    {
+                                        title: "iOS",
+                                        path: "/edge/adobe-journey-optimizer/inbox-ui/iOS",
+                                        pages: [
+                                            {
+                                                title: "Tutorials",
+                                                path: "/edge/adobe-journey-optimizer/inbox-ui/iOS/tutorial/displaying-inbox",
+                                                pages: [
+                                                    {
+                                                        title: "Fetch and Display Inbox",
+                                                        path: "/edge/adobe-journey-optimizer/inbox-ui/iOS/tutorial/displaying-inbox",
+                                                    },
+                                                    {
+                                                        title: "Customizing Inbox",
+                                                        path: "/edge/adobe-journey-optimizer/inbox-ui/iOS/tutorial/customizing-inbox",
+                                                    },
+                                                    {
+                                                        title: "Listening to Inbox Events",
+                                                        path: "/edge/adobe-journey-optimizer/inbox-ui/iOS/tutorial/listening-inbox-events",
+                                                    }
+                                                ]
+                                            }
+                                        ]
                                     }
                                 ]
                             },
