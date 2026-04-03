@@ -10,7 +10,6 @@ This tutorial explains how to fetch and display an Inbox in your application.
 
 The Inbox is a pre-built UI component that displays content cards in a unified container. Unlike individual content cards, the Inbox automatically manages loading states, error handling, empty states, and card layout based on server-side configuration from [Adobe Journey Optimizer](https://business.adobe.com/products/journey-optimizer/adobe-journey-optimizer.html).
 
-
 ## Get InboxUI
 
 To display an Inbox, call `getInboxUI` with your configured surface. This API returns an `InboxUI` object immediately, which manages its own state transitions automatically.
@@ -117,6 +116,7 @@ inboxUI.isPullToRefreshEnabled = true
 ```
 
 When a user pulls to refresh:
+
 1. The Inbox calls `updatePropositionsForSurfaces` to fetch the latest content from the server
 2. After the update completes, it calls `getPropositionsForSurfaces` to retrieve the updated content
 3. The UI refreshes with the new content cards
@@ -133,9 +133,10 @@ inboxUI.refresh()
 ```
 
 This is useful for:
-- Refreshing on button taps
-- Auto-refreshing at intervals
-- Refreshing after specific app events
+
+* Refreshing on button taps
+* Auto-refreshing at intervals
+* Refreshing after specific app events
 
 ### Handling Refresh Events
 
@@ -153,7 +154,6 @@ func onError(_ inbox: InboxUI, _ error: Error) {
 ```
 
 See [Listening to Inbox Events](listening-inbox-events.md) for more details on event handling.
-
 
 ## Best Practices
 
@@ -175,5 +175,5 @@ let promotionsInboxUI = Messaging.getInboxUI(for: Surface(path: "promotions"))
 
 ## Next Steps
 
-- [Listening to Inbox Events](listening-inbox-events.md) - Learn how to respond to user interactions
-- [Customizing Your Inbox](customizing-inbox.md) - Customize appearance, spacing, and views
+* [Listening to Inbox Events](listening-inbox-events.md) - Learn how to respond to user interactions
+* [Customizing Your Inbox](customizing-inbox.md) - Customize appearance, spacing, and views

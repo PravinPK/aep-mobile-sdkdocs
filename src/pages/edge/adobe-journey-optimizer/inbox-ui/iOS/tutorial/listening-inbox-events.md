@@ -71,13 +71,15 @@ func onCardDisplayed(_ card: ContentCardUI) {
 Called when a user interacts with a content card (taps a button, clicks a link, etc.). The return value determines how the SDK handles the `actionURL`.
 
 **Parameters:**
-- `card` - The content card that was interacted with
-- `interactionId` - Unique identifier for the interaction (button ID, link ID, etc.)
-- `actionURL` - Optional URL associated with the interaction
+
+* `card` - The content card that was interacted with
+* `interactionId` - Unique identifier for the interaction (button ID, link ID, etc.)
+* `actionURL` - Optional URL associated with the interaction
 
 **Return Value:**
-- Return `true` if your application handled the URL (prevents SDK from opening it)
-- Return `false` to let the SDK open the URL
+
+* Return `true` if your application handled the URL (prevents SDK from opening it)
+* Return `false` to let the SDK open the URL
 
 ```swift
 func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL: URL?) -> Bool {
@@ -216,12 +218,12 @@ func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL:
 }
 ```
 
-
 ## Best Practices
 
 1. **Avoid Heavy Work in Event Handlers**: Event handlers are called synchronously on the main thread. Keep event handlers lightweight and dispatch heavy work to background queues.
 
 2. **Handle Errors Gracefully**: Provide user-friendly error messages and retry options:
+
    ```swift
    func onError(_ inbox: InboxUI, _ error: Error) {
        showAlert(title: "Unable to load inbox", message: "Please try again later.")
@@ -229,6 +231,7 @@ func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL:
    ```
 
 3. **Log for Debugging**: Use event handlers to log state transitions during development:
+
    ```swift
    func onSuccess(_ inbox: InboxUI) {
        #if DEBUG
@@ -239,5 +242,5 @@ func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL:
 
 ## Next Steps
 
-- [Displaying Inbox](displaying-inbox.md) - Learn how to fetch and display the Inbox
-- [Customizing Your Inbox](customizing-inbox.md) - Customize appearance, spacing, and views
+* [Displaying Inbox](displaying-inbox.md) - Learn how to fetch and display the Inbox
+* [Customizing Your Inbox](customizing-inbox.md) - Customize appearance, spacing, and views

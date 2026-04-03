@@ -6,10 +6,10 @@ This tutorial explains how to customize the appearance and behavior of the Inbox
 
 The `InboxUI` provides extensive customization options to match your app's design system. You can customize:
 
-- **Visual Appearance**: Background, spacing, padding, and unread indicators
-- **Pull-to-Refresh**: Enable user-driven content refresh
-- **Custom Views**: Loading, error, empty state, and heading views
-- **Content Cards**: Individual card appearance through the `ContentCardCustomizing` protocol
+* **Visual Appearance**: Background, spacing, padding, and unread indicators
+* **Pull-to-Refresh**: Enable user-driven content refresh
+* **Custom Views**: Loading, error, empty state, and heading views
+* **Content Cards**: Individual card appearance through the `ContentCardCustomizing` protocol
 
 All customizations are applied to the `InboxUI` instance before or after displaying the view.
 
@@ -95,7 +95,6 @@ inboxUI.contentPadding = EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
 ```
 
 > Default: `EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)`
-
 
 ## Custom Views
 
@@ -198,8 +197,9 @@ inboxUI.setEmptyView { emptyStateSettings in
 ```
 
 The `emptyStateSettings` parameter contains server-provided settings (if available):
-- `image: AEPImage?` - Image to display in the empty state
-- `message: AEPText?` - Message to display in the empty state
+
+* `image: AEPImage?` - Image to display in the empty state
+* `message: AEPText?` - Message to display in the empty state
 
 > Tip: Use `emptyStateSettings` to respect server-side configuration while falling back to your custom defaults when settings are not provided.
 
@@ -248,7 +248,8 @@ inboxUI.setHeadingView { heading in
 ```
 
 The `heading` parameter contains:
-- `text: AEPText` - The heading text configured in Adobe Journey Optimizer
+
+* `text: AEPText` - The heading text configured in Adobe Journey Optimizer
 
 > Note: If heading properties are not configured in Adobe Journey Optimizer, the default heading view is still displayed with default styling. The custom heading view takes priority if provided.
 
@@ -292,8 +293,9 @@ let inboxUI = Messaging.getInboxUI(
 ```
 
 For detailed information on customizing content cards, see:
-- [Customizing Content Card Templates](../../../content-card-ui/iOS/tutorial/customizing-content-card-templates.md)
-- [ContentCardCustomizing Protocol](../../../content-card-ui/iOS/public-classes/contentcardcustomizing.md)
+
+* [Customizing Content Card Templates](../../../content-card-ui/iOS/tutorial/customizing-content-card-templates.md)
+* [ContentCardCustomizing Protocol](../../../content-card-ui/iOS/public-classes/contentcardcustomizing.md)
 
 ## Best Practices
 
@@ -372,9 +374,9 @@ inboxUI.setBackground(DesignSystem.primaryGradient)
 
 ### 5. Performance Considerations
 
-- **Avoid Heavy Views**: Keep custom loading, error, and empty views lightweight
-- **Optimize Images**: Use appropriately sized images for backgrounds
-- **Minimize Redraws**: Avoid dynamic content in custom views that might cause frequent redraws
+* **Avoid Heavy Views**: Keep custom loading, error, and empty views lightweight
+* **Optimize Images**: Use appropriately sized images for backgrounds
+* **Minimize Redraws**: Avoid dynamic content in custom views that might cause frequent redraws
 
 ## Customization Reference
 
@@ -392,6 +394,6 @@ inboxUI.setBackground(DesignSystem.primaryGradient)
 
 ## Next Steps
 
-- [Displaying Inbox](displaying-inbox.md) - Learn how to fetch and display the Inbox
-- [Listening to Inbox Events](listening-inbox-events.md) - Respond to user interactions
-- [ContentCardCustomizing Protocol](../../../content-card-ui/iOS/public-classes/contentcardcustomizing.md) - Deep dive into card customization
+* [Displaying Inbox](displaying-inbox.md) - Learn how to fetch and display the Inbox
+* [Listening to Inbox Events](listening-inbox-events.md) - Respond to user interactions
+* [ContentCardCustomizing Protocol](../../../content-card-ui/iOS/public-classes/contentcardcustomizing.md) - Deep dive into card customization
