@@ -9,6 +9,12 @@ keywords:
 
 # Release notes
 
+## April 3, 2026
+
+### Android Messaging 3.8.0
+
+* Added support for message inbox for content cards.
+
 ## February 20, 2026
 
 ### iOS Messaging 5.11.0
