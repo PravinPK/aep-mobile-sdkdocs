@@ -121,6 +121,12 @@ Only content cards for which the user has qualified are returned. Client-side ru
 
 The Inbox user interface is implemented using Jetpack Compose. To display the inbox, use the `AepInbox` composable with the `InboxUIState` from your ViewModel:
 
+<InlineAlert variant="warning" slots="header, text" />
+
+Do not embed AepInbox inside a scroll container that scrolls in the same direction
+
+`AepInbox` uses a `LazyColumn` for vertical layouts and a `LazyRow` for horizontal layouts. The orientation is set when the inbox campaign is authored and published on Adobe Journey Optimizer UI. Embedding `AepInbox` inside a container that scrolls in the same direction — such as a `LazyColumn` for a vertical scrolling inbox or a `LazyRow` for a horizontal scrolling inbox — causes a runtime crash (`IllegalStateException: Vertically/Horizontally scrollable component was measured with an infinity maximum constraints`).
+
 <CodeBlock slots="heading, code" repeat="1" languages="Kotlin" />
 
 #### Kotlin
