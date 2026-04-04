@@ -55,9 +55,9 @@ The `AepInbox` composable automatically:
 
 <InlineAlert variant="warning" slots="header, text" />
 
-Do not embed AepInbox inside a scroll container that scrolls in the same direction
+Do not embed AepInbox inside an unbounded container/lazy layout that scrolls in the same direction
 
-`AepInbox` uses a `LazyColumn` for vertical layouts and a `LazyRow` for horizontal layouts. The orientation is set when the inbox campaign is authored and published on Adobe Journey Optimizer UI. Embedding `AepInbox` inside a container that scrolls in the same direction — such as a `LazyColumn` for a vertical scrolling inbox or a `LazyRow` for a horizontal scrolling inbox — causes a runtime crash (`IllegalStateException: Vertically/Horizontally scrollable component was measured with an infinity maximum constraints`).
+`AepInbox` uses a `LazyColumn` for vertical layouts and a `LazyRow` for horizontal layouts. The orientation is set when the inbox campaign is authored and published on Adobe Journey Optimizer UI. Embedding `AepInbox` inside an unbounded container/lazy layout that scrolls in the same direction — such as a `LazyColumn` for a vertical scrolling inbox or a `LazyRow` for a horizontal scrolling inbox — causes a runtime crash (`IllegalStateException: Vertically/Horizontally scrollable component was measured with an infinity maximum constraints`).
 
 ### Basic Usage
 
