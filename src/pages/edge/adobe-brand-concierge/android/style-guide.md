@@ -470,7 +470,7 @@ List-based configuration for examples and feedback options.
 
 ### Welcome Examples
 
-> It is recommended to have no more than four items in your provided welcome examples.
+> You shouldn't have more than four items in your provided welcome examples.
 >
 > Always test your values on device to ensure the UI looks as desired.
 
@@ -483,7 +483,7 @@ List-based configuration for examples and feedback options.
 
 ### Feedback Options
 
-> It is recommended to have no more than five options available for feedback.
+> You shouldn't have more than five options available for feedback.
 >
 > Always test your values on device to ensure the UI looks as desired.
 
