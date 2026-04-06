@@ -1,3 +1,15 @@
+---
+title: UnreadIconSettings
+description: Configuration for the icon and placement of the unread indicator.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- UnreadIconSettings
+- IconPlacement
+- UnreadIndicatorSettings
+---
+
 # UnreadIconSettings
 
 Configuration for the icon and placement of the unread indicator.

@@ -1,3 +1,14 @@
+---
+title: IconPlacement
+description: An enum specifying the corner of a content card where the unread indicator icon is displayed.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- IconPlacement
+- UnreadIconSettings
+---
+
 # IconPlacement
 
 An enum specifying the corner of a content card where the unread indicator icon is displayed.

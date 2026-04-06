@@ -1,3 +1,16 @@
+---
+title: InboxUI
+description: The main class for displaying an Inbox in your application, managing state transitions and providing a SwiftUI view.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- InboxUI
+- InboxState
+- InboxEventListening
+- SwiftUI
+---
+
 # InboxUI
 
 `InboxUI` is the main class for displaying an Inbox in your application. It manages its own state transitions — loading, loaded, and error — and provides a SwiftUI view that renders content cards using the layout and settings configured in Adobe Journey Optimizer.
@@ -38,6 +51,10 @@ Creates a new `InboxUI` instance. Use `Messaging.getInboxUI(for:)` as the prefer
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 public init(surface: Surface,
             customizer: ContentCardCustomizing? = nil,
@@ -52,11 +69,19 @@ Programmatically triggers a refresh of inbox content. Calls `updatePropositionsF
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 public func refresh()
 ```
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 inboxUI.refresh()
@@ -74,11 +99,19 @@ Sets a custom background for the inbox container. Accepts any SwiftUI `View` —
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 public func setBackground<V: View>(_ view: V)
 ```
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 inboxUI.setBackground(Color(.systemGroupedBackground))
@@ -101,11 +134,19 @@ Replaces the default loading view with a custom view.
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 public func setLoadingView(_ builder: @escaping () -> AnyView)
 ```
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 inboxUI.setLoadingView {
@@ -130,11 +171,19 @@ Replaces the default error view with a custom view.
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 public func setErrorView(_ builder: @escaping (Error) -> AnyView)
 ```
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 inboxUI.setErrorView { error in
@@ -161,11 +210,19 @@ Replaces the default empty state view with a custom view.
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 public func setEmptyView(_ builder: @escaping (EmptyStateSettings?) -> AnyView)
 ```
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 inboxUI.setEmptyView { emptyStateSettings in
@@ -193,11 +250,19 @@ Replaces the default heading view with a custom view.
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 public func setHeadingView(_ builder: @escaping (AEPText) -> AnyView)
 ```
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 inboxUI.setHeadingView { heading in

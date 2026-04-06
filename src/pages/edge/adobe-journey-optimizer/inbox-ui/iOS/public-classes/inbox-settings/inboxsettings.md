@@ -1,3 +1,14 @@
+---
+title: InboxSettings
+description: Contains the configuration settings for an inbox, accessible via InboxSchemaData.content.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- InboxSettings
+- InboxSchemaData
+---
+
 # InboxSettings
 
 Contains the configuration settings for an inbox. Accessible via `InboxSchemaData.content`.

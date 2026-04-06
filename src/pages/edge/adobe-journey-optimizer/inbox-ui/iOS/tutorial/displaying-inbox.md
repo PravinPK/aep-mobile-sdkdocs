@@ -23,7 +23,7 @@ This tutorial explains how to fetch and display an Inbox in your application.
 
 ## Fetch Inbox Content
 
-To fetch the inbox content for the surfaces configured in [Adobe Journey Optimizer](https://business.adobe.com/products/journey-optimizer/adobe-journey-optimizer.html) campaigns, call the `updatePropositionsForSurfaces` API. You should batch requests for multiple surfaces in a single API call when possible.
+To fetch the inbox content for the surfaces configured in [Adobe Journey Optimizer](https://business.adobe.com/products/journey-optimizer/adobe-journey-optimizer.html) campaigns, call the [updatePropositionsForSurfaces](../../../code-based/api-reference.md#updatepropositionsforsurfaces) API. You should batch requests for multiple surfaces in a single API call when possible.
 
 <CodeBlock slots="heading, code" repeat="1" languages="Swift" />
 

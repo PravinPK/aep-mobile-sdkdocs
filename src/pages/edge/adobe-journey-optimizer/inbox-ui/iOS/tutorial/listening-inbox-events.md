@@ -1,10 +1,24 @@
+---
+title: Listening to Inbox Events
+description: This tutorial explains how to listen to events from the Inbox in your application.
+keywords:
+- Adobe Journey Optimizer
+- Guide
+- Inbox
+- Messaging
+- Inbox UI
+- InboxUI
+- InboxEventListening
+- ContentCardUI
+---
+
 # Listening to Inbox Events
 
 This tutorial explains how to listen to events from the Inbox in your application.
 
 ## Overview
 
-The Messaging extension provides a way to listen to events from both the Inbox container and individual content cards within it. By conforming to the `InboxEventListening` protocol, you can respond to inbox-level state changes and individual content card interactions.
+The Messaging extension provides a way to listen to events from both the Inbox container and individual content cards within it. By conforming to the [InboxEventListening](../public-classes/inboxeventlistening.md) protocol, you can respond to inbox-level state changes and individual content card interactions.
 
 ## Inbox-Level Events
 
@@ -12,7 +26,11 @@ These events track the overall state of the inbox container.
 
 ### onLoading
 
-Called when the inbox begins loading content. This happens when the `InboxUI` is first created or when the user triggers a refresh (pull-to-refresh or programmatic).
+Called when the inbox begins loading content. Triggered when the `InboxUI` is first created or when a refresh (pull-to-refresh or programmatic) begins.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onLoading(_ inbox: InboxUI) {
@@ -22,7 +40,11 @@ func onLoading(_ inbox: InboxUI) {
 
 ### onSuccess
 
-Called when the inbox successfully loads content. This event is triggered whether the inbox contains cards or is empty.
+Called when the inbox successfully loads content. Triggered whether the inbox contains cards or is empty.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onSuccess(_ inbox: InboxUI) {
@@ -32,7 +54,11 @@ func onSuccess(_ inbox: InboxUI) {
 
 ### onError
 
-Called when the inbox encounters an error while loading. Common error scenarios include container settings not found, network failures, or invalid surface configuration.
+Called when the inbox encounters an error while loading. See [InboxError](../public-classes/inboxerror.md) for the error types that can be returned.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onError(_ inbox: InboxUI, _ error: Error) {
@@ -46,7 +72,11 @@ These events track interactions with individual content cards within the inbox.
 
 ### onCardCreated
 
-Called when a content card is created and configured. This happens once per card when the inbox loads or refreshes.
+Called when a content card is created and configured. This is called once per card when the inbox loads or refreshes.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onCardCreated(_ card: ContentCardUI) {
@@ -56,7 +86,11 @@ func onCardCreated(_ card: ContentCardUI) {
 
 ### onCardDisplayed
 
-Called when a content card is displayed to the user. Use this event to track impressions.
+Called when a content card appears on screen. Use this to track card impressions.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onCardDisplayed(_ card: ContentCardUI) {
@@ -64,43 +98,47 @@ func onCardDisplayed(_ card: ContentCardUI) {
 }
 ```
 
-> Note - This event is triggered automatically by the SDK when the card appears on screen. You do not need to manually call any display methods.
+<InlineAlert variant="info" slots="text"/>
+
+This event is triggered automatically by the SDK when the card appears on screen. You do not need to manually call any display methods.
 
 ### onCardInteracted
 
-Called when a user interacts with a content card (taps a button, clicks a link, etc.). The return value determines how the SDK handles the `actionURL`.
+Called when the user interacts with a content card (e.g., taps a button or link). The return value controls whether the SDK handles the `actionURL`.
 
-**Parameters:**
+The `onCardInteracted` method provides an optional `actionURL` parameter associated with the interaction event. The return value of this method determines how the URL is handled.
 
-* `card` - The content card that was interacted with
-* `interactionId` - Unique identifier for the interaction (button ID, link ID, etc.)
-* `actionURL` - Optional URL associated with the interaction
+* Returns `true` if your application has successfully handled the URL. This indicates to the SDK that no further action is needed.
+* Returns `false` to allow the SDK to process the URL.
 
-**Return Value:**
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
 
-* Return `true` if your application handled the URL (prevents SDK from opening it)
-* Return `false` to let the SDK open the URL
+#### Swift
 
 ```swift
 func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL: URL?) -> Bool {
     guard let url = actionURL else { return false }
-    
+
     if url.scheme == "myapp" {
         navigateToDeepLink(url)
         return true // URL handled by app
     }
-    
+
     return false // Let SDK handle URL
 }
 ```
 
-**Read Status Tracking:**
+<InlineAlert variant="info" slots="text"/>
 
-When a card is interacted with, it is automatically marked as **read** and persisted. The read status persists between app launches and affects unread indicator visibility (if enabled).
+When a card is interacted with, it is automatically marked as read and persisted. The read status persists between app launches and affects unread indicator visibility (if enabled).
 
 ### onCardDismissed
 
-Called when a user dismisses a content card by tapping the dismiss button.
+Called when a user dismisses a content card. The inbox automatically removes the dismissed card from the UI.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onCardDismissed(_ card: ContentCardUI) {
@@ -108,76 +146,81 @@ func onCardDismissed(_ card: ContentCardUI) {
 }
 ```
 
-> Note - The Inbox automatically removes dismissed cards from the UI.
-
 ## Implement InboxEventListening
 
-To listen to inbox events, conform to the `InboxEventListening` protocol and pass the listener to the `getInboxUI` API.
+Complete the following steps to listen to inbox events:
+
+1. Conform to the [InboxEventListening](../public-classes/inboxeventlistening.md) protocol in your class or struct and implement the desired methods.
+2. Pass the listener to the [getInboxUI](../api-usage.md#getinboxui) API.
+
+Below is an example implementation of `InboxEventListening`:
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 import SwiftUI
 import AEPMessaging
 
 struct InboxPage: View, InboxEventListening {
-    
+
     let inboxUI: InboxUI
     @State private var showError = false
     @State private var errorMessage = ""
-    
+
     init() {
         let inboxSurface = Surface(path: "inbox")
         inboxUI = Messaging.getInboxUI(for: inboxSurface, listener: self)
         inboxUI.isPullToRefreshEnabled = true
     }
-    
+
     var body: some View {
         inboxUI.view
             .onAppear {
                 Messaging.updatePropositionsForSurfaces([Surface(path: "inbox")])
             }
     }
-    
+
     // MARK: - Inbox State Events
-    
+
     func onLoading(_ inbox: InboxUI) {
         print("Loading inbox...")
     }
-    
+
     func onSuccess(_ inbox: InboxUI) {
         print("Inbox loaded successfully")
     }
-    
+
     func onError(_ inbox: InboxUI, _ error: Error) {
         print("Inbox error: \(error)")
         errorMessage = error.localizedDescription
         showError = true
     }
-    
+
     // MARK: - Content Card Events
-    
+
     func onCardCreated(_ card: ContentCardUI) {
         print("Card created: \(card.id)")
     }
-    
+
     func onCardDisplayed(_ card: ContentCardUI) {
         print("Card displayed: \(card.id)")
     }
-    
+
     func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL: URL?) -> Bool {
-        AnalyticsService.trackInteraction(cardId: card.id, interactionId: interactionId)
-        
         if let url = actionURL, url.scheme == "myapp" {
             handleDeepLink(url)
             return true
         }
-        
+
         return false
     }
-    
+
     func onCardDismissed(_ card: ContentCardUI) {
         print("Card dismissed: \(card.id)")
     }
-    
+
     private func handleDeepLink(_ url: URL) {
         // Your deep link handling logic
         print("Handling deep link: \(url)")
@@ -187,32 +230,40 @@ struct InboxPage: View, InboxEventListening {
 
 ## Handling Actionable URLs
 
-The `onCardInteracted` method provides control over how URLs are handled when users interact with content cards. Here are common patterns:
+The `onCardInteracted` method provides control over how URLs are handled when users interact with content cards.
 
-### Pattern 1: Handle All URLs
+### Handle All URLs
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL: URL?) -> Bool {
     guard let url = actionURL else { return false }
-    
+
     // Handle all URLs in your app
     navigateToURL(url)
     return true // Prevent SDK from opening URL
 }
 ```
 
-### Pattern 2: Selective Handling
+### Selective Handling
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL: URL?) -> Bool {
     guard let url = actionURL else { return false }
-    
+
     // Only handle specific URL schemes
     if url.scheme == "myapp" || url.scheme == "http" || url.scheme == "https" {
         handleURL(url)
         return true
     }
-    
+
     // Let SDK handle other schemes
     return false
 }
@@ -220,25 +271,11 @@ func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL:
 
 ## Best Practices
 
-1. **Avoid Heavy Work in Event Handlers**: Event handlers are called synchronously on the main thread. Keep event handlers lightweight and dispatch heavy work to background queues.
+1. **Avoid Heavy Work in Event Handlers**: Event handlers are called on the main thread. Keep them lightweight and dispatch heavy work to background queues.
 
-2. **Handle Errors Gracefully**: Provide user-friendly error messages and retry options:
+2. **Handle Errors Gracefully**: Provide user-friendly error messages and retry options.
 
-   ```swift
-   func onError(_ inbox: InboxUI, _ error: Error) {
-       showAlert(title: "Unable to load inbox", message: "Please try again later.")
-   }
-   ```
-
-3. **Log for Debugging**: Use event handlers to log state transitions during development:
-
-   ```swift
-   func onSuccess(_ inbox: InboxUI) {
-       #if DEBUG
-       print("Inbox loaded successfully")
-       #endif
-   }
-   ```
+3. **Log for Debugging**: Use event handlers to log state transitions during development.
 
 ## Next Steps
 

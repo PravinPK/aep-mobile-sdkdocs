@@ -1,3 +1,17 @@
+---
+title: Customizing Your Inbox
+description: This tutorial explains how to customize the appearance and behavior of the Inbox in your application.
+keywords:
+- Adobe Journey Optimizer
+- Guide
+- Inbox
+- Messaging
+- Inbox UI
+- InboxUI
+- Customizing UI
+- ContentCardCustomizing
+---
+
 # Customizing Your Inbox
 
 This tutorial explains how to customize the appearance and behavior of the Inbox in your application.
@@ -21,6 +35,10 @@ Set a custom background for the inbox container. The background can be a color, 
 
 #### Setting a Color Background
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 let inboxUI = Messaging.getInboxUI(for: Surface(path: "inbox"))
 
@@ -36,6 +54,10 @@ inboxUI.setBackground(Color.blue.opacity(0.1))
 
 #### Setting a Gradient Background
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 inboxUI.setBackground(
     LinearGradient(
@@ -48,6 +70,10 @@ inboxUI.setBackground(
 
 #### Setting an Image Background
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 inboxUI.setBackground(
     Image("inbox_background")
@@ -56,11 +82,17 @@ inboxUI.setBackground(
 )
 ```
 
-> Default: `Color(.systemGroupedBackground)` - adapts to light and dark mode
+<InlineAlert variant="info" slots="text"/>
+
+Default: `Color(.systemGroupedBackground)` - adapts to light and dark mode.
 
 ### Card Spacing
 
 Control the spacing between content cards in the inbox.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 let inboxUI = Messaging.getInboxUI(for: Surface(path: "inbox"))
@@ -75,11 +107,17 @@ inboxUI.cardSpacing = 16
 inboxUI.cardSpacing = 24
 ```
 
-> Default: `16` points
+<InlineAlert variant="info" slots="text"/>
+
+Default: `16` points.
 
 ### Content Padding
 
 Set the padding around the content area of the inbox.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 let inboxUI = Messaging.getInboxUI(for: Surface(path: "inbox"))
@@ -94,7 +132,9 @@ inboxUI.contentPadding = EdgeInsets(top: 20, leading: 12, bottom: 20, trailing: 
 inboxUI.contentPadding = EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
 ```
 
-> Default: `EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)`
+<InlineAlert variant="info" slots="text"/>
+
+Default: `EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)`.
 
 ## Custom Views
 
@@ -103,6 +143,10 @@ The Inbox provides hooks to customize the loading, error, empty state, and headi
 ### Custom Loading View
 
 Replace the default loading view with your own custom view.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 let inboxUI = Messaging.getInboxUI(for: Surface(path: "inbox"))
@@ -125,6 +169,10 @@ inboxUI.setLoadingView {
 
 Replace the default error view with your own custom view that displays the error.
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 let inboxUI = Messaging.getInboxUI(for: Surface(path: "inbox"))
 
@@ -134,17 +182,17 @@ inboxUI.setErrorView { error in
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.system(size: 60))
                 .foregroundColor(.red)
-            
+
             Text("Oops! Something went wrong")
                 .font(.title2)
                 .fontWeight(.bold)
-            
+
             Text(error.localizedDescription)
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
-            
+
             Button("Try Again") {
                 inboxUI.refresh()
             }
@@ -159,6 +207,10 @@ inboxUI.setErrorView { error in
 ### Custom Empty State View
 
 Replace the default empty state view with your own custom view.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 let inboxUI = Messaging.getInboxUI(for: Surface(path: "inbox"))
@@ -175,7 +227,7 @@ inboxUI.setEmptyView { emptyStateSettings in
                     .font(.system(size: 80))
                     .foregroundColor(.gray)
             }
-            
+
             if let message = emptyStateSettings?.message {
                 message.view
                     .multilineTextAlignment(.center)
@@ -184,7 +236,7 @@ inboxUI.setEmptyView { emptyStateSettings in
                     .font(.headline)
                     .foregroundColor(.secondary)
             }
-            
+
             Button("Refresh") {
                 inboxUI.refresh()
             }
@@ -201,11 +253,17 @@ The `emptyStateSettings` parameter contains the following properties:
 * `image: AEPImage?` - Image to display in the empty state
 * `message: AEPText?` - Message to display in the empty state
 
-> Tip: Use `emptyStateSettings` values when available and fall back to your custom defaults when settings are not provided.
+<InlineAlert variant="info" slots="text"/>
+
+Use `emptyStateSettings` values when available and fall back to your custom defaults when settings are not provided.
 
 ### Custom Heading View
 
 Replace the default heading view or add a custom header to the inbox.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 let inboxUI = Messaging.getInboxUI(for: Surface(path: "inbox"))
@@ -216,13 +274,13 @@ inboxUI.setHeadingView { heading in
             Image(systemName: "tray.fill")
                 .font(.title2)
                 .foregroundColor(.blue)
-            
+
             heading.text.view
                 .font(.title)
                 .fontWeight(.bold)
-            
+
             Spacer()
-            
+
             // Add a custom badge
             if inboxUI.contentCards.count > 0 {
                 Text("\(inboxUI.contentCards.count)")
@@ -251,7 +309,9 @@ The `heading` parameter contains:
 
 * `text: AEPText` - The heading text configured in Adobe Journey Optimizer
 
-> Note: If heading properties are not configured in Adobe Journey Optimizer, the default heading view is still displayed with default styling. The custom heading view takes priority if provided.
+<InlineAlert variant="info" slots="text"/>
+
+If heading properties are not configured in Adobe Journey Optimizer, the default heading view is still displayed with default styling. The custom heading view takes priority if provided.
 
 ## Customizing Content Cards
 
@@ -259,24 +319,28 @@ Individual content cards within the Inbox can be customized using the `ContentCa
 
 ### Applying Content Card Customizations
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 class InboxCardCustomizer: ContentCardCustomizing {
-    
+
     func customize(template: SmallImageTemplate) {
         // Customize UI elements
         template.title.textColor = .primary
         template.title.font = .headline
         template.body?.textColor = .secondary
         template.body?.font = .subheadline
-        
+
         // Customize background
         template.backgroundColor = .white
-        
+
         // Customize buttons
         template.buttons?.first?.text.font = .callout
         template.buttons?.first?.backgroundColor = .blue
     }
-    
+
     func customize(template: LargeImageTemplate) {
         // Customize large image cards differently
         template.title.font = .title2
@@ -301,7 +365,11 @@ For detailed information on customizing content cards, see:
 
 ### 1. Apply Customizations Early
 
-Apply all customizations to the `InboxUI` instance immediately after creation, before the view is displayed:
+Apply all customizations to the `InboxUI` instance immediately after creation, before the view is displayed.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 let inboxUI = Messaging.getInboxUI(for: surface)
@@ -317,7 +385,11 @@ return inboxUI.view
 
 ### 2. Respect Campaign Configuration
 
-When customizing empty state and heading views, use configured values when available:
+When customizing empty state and heading views, use configured values when available.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 inboxUI.setEmptyView { emptyStateSettings in
@@ -329,7 +401,7 @@ inboxUI.setEmptyView { emptyStateSettings in
             } else {
                 Image("default_empty_icon")
             }
-            
+
             // Use configured message if available, otherwise use default
             if let configuredMessage = emptyStateSettings?.message {
                 configuredMessage.view
@@ -343,7 +415,11 @@ inboxUI.setEmptyView { emptyStateSettings in
 
 ### 3. Test Light and Dark Modes
 
-Always test your customizations in both light and dark mode:
+Always test your customizations in both light and dark mode.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 // Use system colors that adapt automatically
@@ -352,7 +428,11 @@ inboxUI.setBackground(Color(.systemGroupedBackground))
 
 ### 4. Maintain Consistency
 
-Keep your Inbox customizations consistent with your app's overall design system:
+Keep your Inbox customizations consistent with your app's overall design system.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 // Define constants for consistency

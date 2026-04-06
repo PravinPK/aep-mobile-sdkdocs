@@ -1,3 +1,15 @@
+---
+title: InboxEventListening
+description: A protocol for listening to state changes and content card interaction events from an InboxUI instance.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- InboxEventListening
+- InboxUI
+- ContentCardUI
+---
+
 # InboxEventListening
 
 A protocol that defines methods for listening to state changes and content card interaction events from an [InboxUI](./inboxui.md) instance.
@@ -30,6 +42,10 @@ Called when the inbox begins loading content. Triggered when the `InboxUI` is fi
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 func onLoading(_ inbox: InboxUI)
 ```
@@ -45,6 +61,10 @@ Called when the inbox successfully loads content. Triggered whether the inbox co
 * _inbox_ - The [InboxUI](./inboxui.md) that loaded successfully.
 
 #### Syntax
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onSuccess(_ inbox: InboxUI)
@@ -63,6 +83,10 @@ Called when the inbox encounters an error while loading. See [InboxError](./inbo
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 func onError(_ inbox: InboxUI, _ error: Error)
 ```
@@ -78,6 +102,10 @@ Called when a content card is created and configured. This is called once per ca
 * _card_ - The [`ContentCardUI`](../../../content-card-ui/iOS/public-classes/contentcardui.md) that was created.
 
 #### Syntax
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onCardCreated(_ card: ContentCardUI)
@@ -95,6 +123,10 @@ Called when a content card appears on screen. Use this to track card impressions
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 func onCardDisplayed(_ card: ContentCardUI)
 ```
@@ -110,6 +142,10 @@ Called when a user dismisses a content card. The inbox automatically removes the
 * _card_ - The [`ContentCardUI`](../../../content-card-ui/iOS/public-classes/contentcardui.md) that was dismissed.
 
 #### Syntax
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onCardDismissed(_ card: ContentCardUI)
@@ -133,11 +169,19 @@ Return `true` if your application handled the `actionURL`. Return `false` to let
 
 #### Syntax
 
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
+
 ```swift
 func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL: URL?) -> Bool
 ```
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onCardInteracted(_ card: ContentCardUI, _ interactionId: String, actionURL: URL?) -> Bool {

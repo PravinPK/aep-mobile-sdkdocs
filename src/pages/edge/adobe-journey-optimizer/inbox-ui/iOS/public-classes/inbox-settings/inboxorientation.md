@@ -1,3 +1,14 @@
+---
+title: InboxOrientation
+description: An enum specifying the layout direction of content cards in the inbox.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- InboxOrientation
+- LayoutSettings
+---
+
 # InboxOrientation
 
 An enum specifying the layout direction of content cards in the inbox.

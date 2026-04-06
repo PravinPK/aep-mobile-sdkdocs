@@ -1,3 +1,14 @@
+---
+title: InboxError
+description: An enum describing errors that can occur when loading an InboxUI.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- InboxError
+- InboxUI
+---
+
 # InboxError
 
 An enum describing errors that can occur when loading an [InboxUI](./inboxui.md). Conforms to `LocalizedError`.
@@ -33,6 +44,10 @@ public enum InboxError: Int, Error {
 | `recoverySuggestion` | A suggested action to resolve the error. |
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 func onError(_ inbox: InboxUI, _ error: Error) {

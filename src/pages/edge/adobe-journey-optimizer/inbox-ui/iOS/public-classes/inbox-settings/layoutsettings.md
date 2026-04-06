@@ -1,3 +1,14 @@
+---
+title: LayoutSettings
+description: Controls the layout orientation of content cards within an inbox.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- LayoutSettings
+- InboxOrientation
+---
+
 # LayoutSettings
 
 Controls the layout orientation of content cards within an inbox.

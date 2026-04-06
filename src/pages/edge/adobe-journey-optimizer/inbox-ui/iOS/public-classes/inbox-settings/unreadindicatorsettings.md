@@ -1,3 +1,15 @@
+---
+title: UnreadIndicatorSettings
+description: Settings that define the appearance and placement of the unread indicator displayed on content cards that have not yet been read.
+keywords:
+- Adobe Journey Optimizer
+- Inbox
+- Messaging
+- UnreadIndicatorSettings
+- UnreadBackgroundSettings
+- UnreadIconSettings
+---
+
 # UnreadIndicatorSettings
 
 Settings that define the appearance and placement of the unread indicator displayed on content cards that have not yet been read.
