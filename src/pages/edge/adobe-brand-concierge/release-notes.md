@@ -16,7 +16,6 @@ keywords:
 * Added CTA button support and enhanced user input/feedback experience
 * Improved parsing and rendering of multimodal content and lists
 
-
 ### Android Brand Concierge 3.2.0
 
 * Improved UI consistency, theming, and product card presentation
