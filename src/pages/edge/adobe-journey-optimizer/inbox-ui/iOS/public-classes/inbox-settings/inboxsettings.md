@@ -1,6 +1,6 @@
 # InboxSettings
 
-Contains the configuration settings for an inbox, decoded from the server payload. Accessible via `InboxSchemaData.content`.
+Contains the configuration settings for an inbox. Accessible via `InboxSchemaData.content`.
 
 ## Class Definition
 

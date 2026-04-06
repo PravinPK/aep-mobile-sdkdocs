@@ -1,6 +1,6 @@
 # InboxSchemaData
 
-Represents the server-provided schema data for an inbox, decoded from an Adobe Journey Optimizer inbox proposition item. This data drives the layout, heading, empty state, and unread indicator behavior of the [InboxUI](./inboxui.md).
+Represents the schema data for an inbox that drives the layout, heading, empty state, and unread indicator behavior of the [InboxUI](./inboxui.md).
 
 ## Class Definition
 
@@ -12,7 +12,7 @@ public class InboxSchemaData: NSObject, Codable
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `content` | [`InboxSettings`](./inbox-settings/inboxsettings.md) | The inbox settings decoded from the server payload, containing layout, heading, capacity, empty state, and unread indicator configuration. |
+| `content` | [`InboxSettings`](./inbox-settings/inboxsettings.md) | The inbox configuration settings, containing layout, heading, capacity, empty state, and unread indicator configuration. |
 
 ## Usage
 

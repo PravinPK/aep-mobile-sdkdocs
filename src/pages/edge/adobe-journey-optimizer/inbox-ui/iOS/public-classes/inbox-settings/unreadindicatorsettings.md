@@ -1,6 +1,6 @@
 # UnreadIndicatorSettings
 
-Contains the server-provided configuration for the unread indicator — a visual badge displayed on content cards that have not yet been read.
+Settings that define the appearance and placement of the unread indicator displayed on content cards that have not yet been read.
 
 ## Struct Definition
 

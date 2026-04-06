@@ -166,7 +166,7 @@ let inboxUI = Messaging.getInboxUI(for: Surface(path: "inbox"))
 inboxUI.setEmptyView { emptyStateSettings in
     AnyView(
         VStack(spacing: 20) {
-            // Use server-provided image and message if available
+            // Use configured image and message if available
             if let image = emptyStateSettings?.image {
                 image.view
                     .frame(maxWidth: 120, maxHeight: 120)
@@ -196,12 +196,12 @@ inboxUI.setEmptyView { emptyStateSettings in
 }
 ```
 
-The `emptyStateSettings` parameter contains server-provided settings (if available):
+The `emptyStateSettings` parameter contains the following properties:
 
 * `image: AEPImage?` - Image to display in the empty state
 * `message: AEPText?` - Message to display in the empty state
 
-> Tip: Use `emptyStateSettings` to respect server-side configuration while falling back to your custom defaults when settings are not provided.
+> Tip: Use `emptyStateSettings` values when available and fall back to your custom defaults when settings are not provided.
 
 ### Custom Heading View
 
@@ -315,24 +315,24 @@ inboxUI.isPullToRefreshEnabled = true
 return inboxUI.view
 ```
 
-### 2. Respect Server-Side Configuration
+### 2. Respect Campaign Configuration
 
-When customizing empty state and heading views, respect server-provided settings:
+When customizing empty state and heading views, use configured values when available:
 
 ```swift
 inboxUI.setEmptyView { emptyStateSettings in
     AnyView(
         VStack {
-            // Use server image if available, otherwise use default
-            if let serverImage = emptyStateSettings?.image {
-                serverImage.view
+            // Use configured image if available, otherwise use default
+            if let configuredImage = emptyStateSettings?.image {
+                configuredImage.view
             } else {
                 Image("default_empty_icon")
             }
             
-            // Use server message if available, otherwise use default
-            if let serverMessage = emptyStateSettings?.message {
-                serverMessage.view
+            // Use configured message if available, otherwise use default
+            if let configuredMessage = emptyStateSettings?.message {
+                configuredMessage.view
             } else {
                 Text("No content available")
             }

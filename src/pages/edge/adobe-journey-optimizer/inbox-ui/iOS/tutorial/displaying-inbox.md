@@ -1,52 +1,74 @@
-# Displaying Inbox
+---
+title: Fetch and Display Inbox
+description: This tutorial explains how to fetch and display an Inbox in your application.
+keywords:
+- Adobe Journey Optimizer
+- Guide
+- Inbox
+- Messaging
+- Inbox UI
+- InboxUI
+- Surface
+- SwiftUI
+- UIKit
+---
+
+# Fetch and Display Inbox
 
 This tutorial explains how to fetch and display an Inbox in your application.
 
 ## Pre-requisites
 
-[Integrate and register AEPMessaging extension](https://developer.adobe.com/client-sdks/edge/adobe-journey-optimizer/#implement-extension-in-mobile-app) in your app.
+[Integrate and register the AEPMessaging extension](../../../index.md#implement-extension-in-mobile-app) in your app.
 
-## Overview
+## Fetch Inbox Content
 
-The Inbox is a pre-built UI component that displays content cards in a unified container. Unlike individual content cards, the Inbox automatically manages loading states, error handling, empty states, and card layout based on server-side configuration from [Adobe Journey Optimizer](https://business.adobe.com/products/journey-optimizer/adobe-journey-optimizer.html).
+To fetch the inbox content for the surfaces configured in [Adobe Journey Optimizer](https://business.adobe.com/products/journey-optimizer/adobe-journey-optimizer.html) campaigns, call the `updatePropositionsForSurfaces` API. You should batch requests for multiple surfaces in a single API call when possible.
 
-## Get InboxUI
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
 
-To display an Inbox, call `getInboxUI` with your configured surface. This API returns an `InboxUI` object immediately, which manages its own state transitions automatically.
+#### Swift
 
 ```swift
 let inboxSurface = Surface(path: "inbox")
-let inboxUI = Messaging.getInboxUI(for: inboxSurface)
+Messaging.updatePropositionsForSurfaces([inboxSurface])
 ```
 
-When created, the `InboxUI` begins fetching inbox settings and content cards, transitioning through loading, loaded (with or without cards), or error states as needed.
+## Display Inbox
 
-> Note - The Inbox automatically handles layout (vertical/horizontal), styling, and unread indicators based on server-side configuration from Adobe Journey Optimizer campaigns.
+To display an Inbox, call `getInboxUI` with your configured surface. This API returns an [InboxUI](../public-classes/inboxui.md) instance immediately, which manages its own state transitions — loading, loaded, and error — automatically.
 
-## Display Inbox in SwiftUI
+<InlineAlert variant="info" slots="text"/>
 
-The simplest way to display an Inbox in SwiftUI is to use the `InboxUI.view` property:
+Call `updatePropositionsForSurfaces` before or after calling `getInboxUI`. The Inbox will begin displaying content once the fetch completes.
+
+### SwiftUI Application
+
+Use the `InboxUI.view` property to embed the Inbox directly into your SwiftUI view hierarchy.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 import SwiftUI
 import AEPMessaging
 
 struct InboxPage: View {
-    
+
     let inboxUI: InboxUI
-    
+
     init() {
         let inboxSurface = Surface(path: "inbox")
         inboxUI = Messaging.getInboxUI(for: inboxSurface)
     }
-    
+
     var body: some View {
         NavigationView {
             inboxUI.view
                 .navigationTitle("Inbox")
         }
         .onAppear {
-            // Fetch content cards when the view appears
             let inboxSurface = Surface(path: "inbox")
             Messaging.updatePropositionsForSurfaces([inboxSurface])
         }
@@ -54,9 +76,13 @@ struct InboxPage: View {
 }
 ```
 
-## Display Inbox in UIKit
+### UIKit Application
 
-To display an Inbox in UIKit, use `UIHostingController` to wrap the SwiftUI `InboxUI.view`:
+To display an Inbox in UIKit, wrap the SwiftUI `InboxUI.view` using `UIHostingController`.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 import UIKit
@@ -64,27 +90,23 @@ import SwiftUI
 import AEPMessaging
 
 class InboxViewController: UIViewController {
-    
+
     var inboxUI: InboxUI!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "Inbox"
-        
-        // Create the InboxUI
+
         let inboxSurface = Surface(path: "inbox")
         inboxUI = Messaging.getInboxUI(for: inboxSurface)
-        
-        // Wrap the SwiftUI view in a UIHostingController
+
         let hostingController = UIHostingController(rootView: inboxUI.view)
-        
-        // Add the hosting controller as a child view controller
+
         addChild(hostingController)
         view.addSubview(hostingController.view)
         hostingController.didMove(toParent: self)
-        
-        // Set up constraints to make the view fill the container
+
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -92,8 +114,7 @@ class InboxViewController: UIViewController {
             hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
             hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        // Fetch content cards
+
         Messaging.updatePropositionsForSurfaces([inboxSurface])
     }
 }
@@ -101,59 +122,38 @@ class InboxViewController: UIViewController {
 
 ## Refreshing Inbox Data
 
-The Inbox provides multiple ways to refresh content cards:
+The Inbox provides two ways to refresh content.
 
-### 1. Pull-to-Refresh (SwiftUI)
+### Pull-to-Refresh
 
-Enable pull-to-refresh functionality to allow users to refresh content by pulling down on the Inbox:
+Enable pull-to-refresh to let users refresh content by pulling down on the Inbox.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 let inboxSurface = Surface(path: "inbox")
 let inboxUI = Messaging.getInboxUI(for: inboxSurface)
 
-// Enable pull-to-refresh
 inboxUI.isPullToRefreshEnabled = true
 ```
 
-When a user pulls to refresh:
+<InlineAlert variant="info" slots="text"/>
 
-1. The Inbox calls `updatePropositionsForSurfaces` to fetch the latest content from the server
-2. After the update completes, it calls `getPropositionsForSurfaces` to retrieve the updated content
-3. The UI refreshes with the new content cards
+Pull-to-refresh is disabled by default. Set `isPullToRefreshEnabled = true` to enable it.
 
-> Note - Pull-to-refresh is disabled by default. Set `isPullToRefreshEnabled = true` to enable it.
+### Programmatic Refresh
 
-### 2. Programmatic Refresh
+Call `refresh()` to programmatically trigger a content refresh.
 
-You can programmatically refresh the Inbox using the `refresh()` method:
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
-// Refresh the inbox programmatically
 inboxUI.refresh()
 ```
-
-This is useful for:
-
-* Refreshing on button taps
-* Auto-refreshing at intervals
-* Refreshing after specific app events
-
-### Handling Refresh Events
-
-To be notified when a refresh completes (for both pull-to-refresh and programmatic refresh), use the `InboxEventListening` protocol:
-
-```swift
-// Implement InboxEventListening to handle refresh completion
-func onSuccess(_ inbox: InboxUI) {
-    print("Inbox refreshed successfully")
-}
-
-func onError(_ inbox: InboxUI, _ error: Error) {
-    print("Failed to refresh inbox: \(error)")
-}
-```
-
-See [Listening to Inbox Events](listening-inbox-events.md) for more details on event handling.
 
 ## Best Practices
 
@@ -163,13 +163,14 @@ See [Listening to Inbox Events](listening-inbox-events.md) for more details on e
 
 3. **Reuse InboxUI**: Keep the `InboxUI` instance alive as long as the Inbox view is visible. The `InboxUI` maintains state and efficiently updates when content changes.
 
-4. **Handle Multiple Surfaces**: If your app has multiple Inboxes (e.g., notifications, promotions), create separate `InboxUI` instances with different surfaces:
+4. **Handle Multiple Surfaces**: If your app has multiple Inboxes, create separate `InboxUI` instances with different surfaces.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
-// Notifications inbox
 let notificationsInboxUI = Messaging.getInboxUI(for: Surface(path: "notifications"))
-
-// Promotions inbox
 let promotionsInboxUI = Messaging.getInboxUI(for: Surface(path: "promotions"))
 ```
 

@@ -16,7 +16,7 @@ public class InboxUI: Identifiable, ObservableObject
 | `id` | `UUID` | A unique identifier for this inbox instance. |
 | `surface` | `Surface` | The surface this inbox is bound to. |
 | `state` | [`InboxState`](./inboxstate.md) | The current state of the inbox. Published — changes automatically update the view. |
-| `inboxSchemaData` | [`InboxSchemaData?`](./inboxschemadata.md) | The server-provided inbox schema data, including layout, heading, and empty state settings. Published and read-only. |
+| `inboxSchemaData` | [`InboxSchemaData?`](./inboxschemadata.md) | The inbox schema data, including layout, heading, and empty state settings. Published and read-only. |
 | `listener` | [`InboxEventListening?`](./inboxeventlistening.md) | An optional listener to receive inbox state and card interaction events. |
 | `isPullToRefreshEnabled` | `Bool` | Whether pull-to-refresh is enabled. Default: `false`. |
 | `cardSpacing` | `CGFloat` | The vertical spacing between content cards. Default: `16`. |
@@ -157,7 +157,7 @@ Replaces the default empty state view with a custom view.
 
 #### Parameters
 
-* _builder_ - A closure that receives the optional [`EmptyStateSettings`](./inbox-settings/emptystatessettings.md) from the server and returns an `AnyView` to display when the inbox has no content.
+* _builder_ - A closure that receives the optional [`EmptyStateSettings`](./inbox-settings/emptystatessettings.md) and returns an `AnyView` to display when the inbox has no content.
 
 #### Syntax
 

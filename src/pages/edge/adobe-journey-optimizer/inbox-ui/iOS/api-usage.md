@@ -1,30 +1,52 @@
-# APIs Usage
+---
+title: Inbox UI API Usage
+description: Learn how to use the Messaging extension APIs to implement Inbox UI in your iOS application.
+keywords:
+- Adobe Journey Optimizer
+- Guide
+- Inbox
+- Inbox UI
+- Messaging
+- Customizing UI
+- Content Cards
+- iOS
+---
 
-This document provides information on how to use the Messaging APIs to receive and display an Inbox UI in your application.
+# API Reference
+
+This document lists the public APIs available in the Messaging extension for implementing Inbox UI with qualified content cards.
 
 ## Importing Messaging
 
-To use the Messaging APIs, you need to import the Messaging module in your Swift file.
+To use the Messaging APIs, import the Messaging module in your Swift file.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 import AEPMessaging
 ```
 
-## APIs
+## getInboxUI
 
-### getInboxUI
+The `getInboxUI` method obtains an [InboxUI](./public-classes/inboxui.md) instance for a given surface so you can display a SwiftUI Inbox view with the qualified content cards.
 
-Use the `getInboxUI` method to obtain an [InboxUI](./public-classes/inboxui.md) instance for a given surface and display a SwiftUI Inbox view with the qualified content cards.
+#### Parameters:
 
-#### Parameters
-
-* _surface_ - The `Surface` for which to retrieve the inbox.
+* _surface_ - The [Surface](../../public-classes/surface.md) for which to retrieve the inbox.
 * _customizer_ - An optional [ContentCardCustomizing](../../content-card-ui/iOS/public-classes/contentcardcustomizing.md) object to customize the appearance of the content cards within the inbox. If you do not need to customize the appearance of the content cards, this parameter can be omitted.
 * _listener_ - An optional [InboxEventListening](./public-classes/inboxeventlistening.md) object to listen to state and interaction events from the inbox. If you do not need to listen to events, this parameter can be omitted.
 
-> **Note** - This API returns an `InboxUI` immediately. The inbox will not have content until `updatePropositionsForSurfaces` has been called with the same surface. Call `updatePropositionsForSurfaces` to download content from Adobe Journey Optimizer prior to or after calling this API.
+<InlineAlert variant="info" slots="text"/>
+
+This API returns an `InboxUI` immediately. The inbox will not have content until proposition data has been fetched for the same surface. You **must** call the [`updatePropositionsForSurfaces`](../../code-based/api-reference.md#updatepropositionsforsurfaces) API with the desired surfaces prior to or after obtaining the inbox UI, depending on when you want content to appear.
 
 #### Syntax
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 @available(iOS 15.0, *)
@@ -34,6 +56,10 @@ public static func getInboxUI(for surface: Surface,
 ```
 
 #### Example
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 // Create a surface matching your Adobe Journey Optimizer campaign configuration
@@ -53,7 +79,11 @@ struct InboxPage: View {
 }
 ```
 
-#### Example with Listener and Customizer
+#### Example with listener and customizer
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 let inboxSurface = Surface(path: "inbox")
@@ -65,34 +95,17 @@ let inboxUI = Messaging.getInboxUI(
 )
 ```
 
----
-
-### updatePropositionsForSurfaces
-
-Dispatches a network request to fetch propositions for the provided surfaces from Adobe Journey Optimizer. Call this API to download the latest content cards and inbox settings before displaying the inbox.
-
-#### Syntax
-
-```swift
-public static func updatePropositionsForSurfaces(_ surfaces: [Surface])
-```
-
-#### Example
-
-```swift
-let inboxSurface = Surface(path: "inbox")
-Messaging.updatePropositionsForSurfaces([inboxSurface])
-```
-
----
-
 ## Typical Usage Flow
 
 1. Register and configure the AEPMessaging extension at app launch.
-2. Call `Messaging.updatePropositionsForSurfaces` to download inbox content from the server.
+2. Call [`updatePropositionsForSurfaces`](../../code-based/api-reference.md#updatepropositionsforsurfaces) to download inbox content.
 3. Call `Messaging.getInboxUI(for:)` to obtain an `InboxUI` instance.
 4. Display the inbox using the `InboxUI.view` property in your SwiftUI or UIKit view.
 5. Optionally assign a listener and customizer to respond to events and style the inbox.
+
+<CodeBlock slots="heading, code" repeat="1" languages="Swift" />
+
+#### Swift
 
 ```swift
 import SwiftUI

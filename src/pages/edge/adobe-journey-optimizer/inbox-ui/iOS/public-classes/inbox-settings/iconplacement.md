@@ -22,4 +22,4 @@ public enum IconPlacement: String, CaseIterable {
 | `topRight` | `"topright"` | The unread icon is displayed in the top-right corner of the card. |
 | `bottomLeft` | `"bottomleft"` | The unread icon is displayed in the bottom-left corner of the card. |
 | `bottomRight` | `"bottomright"` | The unread icon is displayed in the bottom-right corner of the card. |
-| `unknown` | `"unknown"` | The placement value was not recognized. Used as a fallback for future server values. |
+| `unknown` | `"unknown"` | The placement value was not recognized. Used as a fallback for unrecognized values. |
